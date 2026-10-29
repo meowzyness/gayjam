@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
 [ext_resource type="Script" uid="uid://8s06a5vxy5fw" path="res://character_body_2d.gd" id="1_0e48y"]
+[ext_resource type="Script" uid="uid://t11nhrq1ihmw" path="res://node_2d.gd" id="1_epypp"]
 [ext_resource type="Texture2D" uid="uid://byade5we45017" path="res://icon.svg" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://bd04iaejsn4xt" path="res://person.tscn" id="2_0hol4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wvm1h"]
 
@@ -9,6 +11,8 @@
 size = Vector2(660, 20)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
+script = ExtResource("1_epypp")
+person = ExtResource("2_0hol4")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1847476827]
 script = ExtResource("1_0e48y")
