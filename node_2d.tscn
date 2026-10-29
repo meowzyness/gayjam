@@ -1,38 +1,31 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
-[ext_resource type="Texture2D" uid="uid://byade5we45017" path="res://icon.svg" id="1_wtcfe"]
 [ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://spawner.gd" id="2_0e48y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
-size = Vector2(660, 20)
+[sub_resource type="Gradient" id="Gradient_wtcfe"]
+offsets = PackedFloat32Array(0.6987952, 1)
+colors = PackedColorArray(0.10144931, 0.10144931, 0.10144931, 0.9192384, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mya75"]
+gradient = SubResource("Gradient_wtcfe")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=490475754]
-position = Vector2(100, 500)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=1416722212]
-scale = Vector2(5, 0.1)
-texture = ExtResource("1_wtcfe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=589183674]
-shape = SubResource("RectangleShape2D_mya75")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=351830850]
-position = Vector2(485, 423)
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2" unique_id=1678210095]
-scale = Vector2(5, 0.1)
-texture = ExtResource("1_wtcfe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=527278257]
-shape = SubResource("RectangleShape2D_mya75")
-
 [node name="Node2D" type="Node2D" parent="." unique_id=579913586]
-position = Vector2(0, 320)
+position = Vector2(-600, 0)
 script = ExtResource("2_0e48y")
 
 [node name="Timer" type="Timer" parent="Node2D" unique_id=1037690795]
 autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2128157938]
+z_index = 2
+position = Vector2(0, -16)
+scale = Vector2(20, 0.5)
+texture = SubResource("GradientTexture2D_mya75")
 
 [connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]
