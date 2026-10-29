@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 
-var is_walker := randi_range(0, 1)
-var SPEED := randf_range(70, 100)
-var time = 0.0
+var is_walker: bool = randi_range(0, 1)
+var speed: float = randf_range(70, 100)
+var time: float = 0.0
 var personality: Personality = Personality.new()
+var direction: Vector2 = Vector2.RIGHT
 
 
 func _ready():
@@ -23,10 +24,9 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 
 func _physics_process(delta: float) -> void:
 	time += delta
-	var direction: Vector2 = Vector2.RIGHT
 	if is_walker:
-		position.y = -abs(sin(time * SPEED/8) * 4)
-		velocity = direction * SPEED
+		position.y = -abs(sin(time * speed/8) * 4)
+		velocity = direction * speed
 	else:
 		velocity = direction * 50.0
 
