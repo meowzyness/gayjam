@@ -1,24 +1,12 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
-[ext_resource type="Script" uid="uid://8s06a5vxy5fw" path="res://character_body_2d.gd" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://byade5we45017" path="res://icon.svg" id="1_wtcfe"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wvm1h"]
+[ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://spawner.gd" id="2_0e48y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
 size = Vector2(660, 20)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1847476827]
-script = ExtResource("1_0e48y")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1788483966]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_wtcfe")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=35923330]
-shape = SubResource("CircleShape2D_wvm1h")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=490475754]
 position = Vector2(100, 500)
@@ -39,3 +27,12 @@ texture = ExtResource("1_wtcfe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=527278257]
 shape = SubResource("RectangleShape2D_mya75")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=579913586]
+position = Vector2(0, 320)
+script = ExtResource("2_0e48y")
+
+[node name="Timer" type="Timer" parent="Node2D" unique_id=1037690795]
+autostart = true
+
+[connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]
