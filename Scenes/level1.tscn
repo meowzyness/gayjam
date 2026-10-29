@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
-[ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://spawner.gd" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="1_4hvuo"]
 
 [sub_resource type="Gradient" id="Gradient_wtcfe"]
 offsets = PackedFloat32Array(0.6987952, 1)
@@ -15,7 +15,7 @@ fill_to = Vector2(0.5, 1)
 
 [node name="CrowdSpawner" type="Node2D" parent="." unique_id=579913586]
 position = Vector2(-615, 200)
-script = ExtResource("2_0e48y")
+script = ExtResource("1_4hvuo")
 
 [node name="Timer" type="Timer" parent="CrowdSpawner" unique_id=1037690795]
 autostart = true

@@ -11,7 +11,6 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = Vector2.RIGHT
 	if is_walker:
 		position.y = -abs(sin(time * SPEED/8) * 4)
-		#position.y = clamp(position.y, -10, 0)
 		velocity = direction * SPEED
 	else:
 		velocity = direction * 50.0

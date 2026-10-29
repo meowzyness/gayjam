@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var person_scene := preload("res://person.tscn")
+var person_scene := preload("res://Scenes/person.tscn")
 
 func _ready() -> void:
 	$Timer.start()
