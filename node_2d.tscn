@@ -13,19 +13,19 @@ fill_to = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
-[node name="Node2D" type="Node2D" parent="." unique_id=579913586]
-position = Vector2(-600, 0)
+[node name="CrowdSpawner" type="Node2D" parent="." unique_id=579913586]
+position = Vector2(-615, 200)
 script = ExtResource("2_0e48y")
 
-[node name="Timer" type="Timer" parent="Node2D" unique_id=1037690795]
+[node name="Timer" type="Timer" parent="CrowdSpawner" unique_id=1037690795]
 autostart = true
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2128157938]
+[node name="Sprite2D" type="Sprite2D" parent="CrowdSpawner" unique_id=2128157938]
 z_index = 2
-position = Vector2(0, -16)
+position = Vector2(600, -16)
 scale = Vector2(20, 0.5)
 texture = SubResource("GradientTexture2D_mya75")
 
-[connection signal="timeout" from="Node2D/Timer" to="Node2D" method="_on_timer_timeout"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
+
+[connection signal="timeout" from="CrowdSpawner/Timer" to="CrowdSpawner" method="_on_timer_timeout"]
