@@ -2,15 +2,19 @@ extends CharacterBody2D
 
 
 var is_walker: bool = randi_range(0, 1)
-var speed: float = randf_range(70, 100)
+var speed: float = randf_range(70, 120)
 var time: float = 0.0
-var personality: Personality = Personality.new()
-var direction: Vector2 = Vector2.RIGHT
+var personality: Personality
+var direction: Vector2 = Vector2.LEFT
 
 
 func _ready():
+	personality =  Personality.new()
+	var sprite: Sprite2D = $Sprite2D as Sprite2D
+	var files = DirAccess.get_files_at("res://Sprites/")
+	sprite.texture = load("res://Sprites/" + files[randi() % files.size()])
 	input_pickable = true 
-	
+
 	if not input_event.is_connected(_on_input_event):
 		input_event.connect(_on_input_event)
 

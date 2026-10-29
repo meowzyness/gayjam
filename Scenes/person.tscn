@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://b3hyuni8qvh7b"]
 
 [ext_resource type="Script" uid="uid://8s06a5vxy5fw" path="res://Scripts/person.gd" id="1_74dau"]
-[ext_resource type="Texture2D" uid="uid://byade5we45017" path="res://icon.svg" id="2_wrnb3"]
+[ext_resource type="Texture2D" uid="uid://gd716gkqsotv" path="res://Sprites/civ_m_002.webp" id="2_74dau"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74dau"]
 size = Vector2(32, 64)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=9026128]
+scale = Vector2(4, 4)
 collision_mask = 0
 script = ExtResource("1_74dau")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2121498357]
-scale = Vector2(0.25, 0.5)
-texture = ExtResource("2_wrnb3")
+position = Vector2(0, -10.000001)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_74dau")
 offset = Vector2(0, -64)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=374512071]

@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_wtcfe"]
 offsets = PackedFloat32Array(0.6987952, 1)
-colors = PackedColorArray(0.10144931, 0.10144931, 0.10144931, 0.9192384, 0, 0, 0, 1)
+colors = PackedColorArray(0.101960786, 0.101960786, 0.101960786, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mya75"]
 gradient = SubResource("Gradient_wtcfe")
@@ -14,7 +14,7 @@ fill_to = Vector2(0.5, 1)
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
 [node name="CrowdSpawner" type="Node2D" parent="." unique_id=579913586]
-position = Vector2(-615, 200)
+position = Vector2(640, 186)
 script = ExtResource("1_4hvuo")
 
 [node name="Timer" type="Timer" parent="CrowdSpawner" unique_id=1037690795]
@@ -22,8 +22,8 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CrowdSpawner" unique_id=2128157938]
 z_index = 2
-position = Vector2(600, -16)
-scale = Vector2(20, 0.5)
+position = Vector2(-356, 32.95)
+scale = Vector2(31.125, 1.5)
 texture = SubResource("GradientTexture2D_mya75")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
