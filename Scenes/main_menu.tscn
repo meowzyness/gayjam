@@ -12,6 +12,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_28flt")
 
+[node name="RightPic" type="TextureRect" parent="." unique_id=772357631]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48xlc")
+expand_mode = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=190040042]
 layout_mode = 1
 anchors_preset = 15
@@ -19,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 60
+theme_override_constants/margin_left = 160
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
