@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
 [ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="1_4hvuo"]
+[ext_resource type="PackedScene" path="res://Scenes/dossier.tscn" id="2_dossier"]
 
 [sub_resource type="Gradient" id="Gradient_wtcfe"]
 offsets = PackedFloat32Array(0.6987952, 1)
@@ -27,5 +28,7 @@ scale = Vector2(31.125, 1.5)
 texture = SubResource("GradientTexture2D_mya75")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
+
+[node name="Dossier" parent="." instance=ExtResource("2_dossier")]
 
 [connection signal="timeout" from="CrowdSpawner/Timer" to="CrowdSpawner" method="_on_timer_timeout"]
