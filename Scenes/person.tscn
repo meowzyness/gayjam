@@ -3,23 +3,24 @@
 [ext_resource type="Script" uid="uid://8s06a5vxy5fw" path="res://Scripts/person.gd" id="1_74dau"]
 [ext_resource type="Texture2D" uid="uid://gd716gkqsotv" path="res://Sprites/people/civ_m_002.webp" id="2_74dau"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74dau"]
-size = Vector2(32, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
+size = Vector2(20, 22)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=9026128 groups=["detectable"]]
+[node name="CharacterBody2D" type="Area2D" unique_id=287587039 groups=["detectable"]]
 scale = Vector2(4, 4)
-collision_mask = 0
-input_pickable = true
 script = ExtResource("1_74dau")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=374512071]
-position = Vector2(0, -32)
-shape = SubResource("RectangleShape2D_74dau")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1339832195]
+position = Vector2(0, -13.5)
+scale = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_mya75")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2121498357]
 position = Vector2(0, -10.000001)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_74dau")
 offset = Vector2(0, -64)
+
+[node name="a" type="Node2D" parent="." unique_id=2039802436]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,5 +1,6 @@
 class_name Personality
 
+@export var sussyness: float
 @export var traitor: bool
 @export var name: String
 @export var surname: String
@@ -108,7 +109,6 @@ var last_names_western_f = [
 
 var citizenship_types = ["Трикарасье", "Новкарасье", "Чегория", "Стромыния", "Сокологора", "Теркастан", "Кашингтон", "Вернандт"]
 
-
 func _init():
 	sex = sexes.pick_random()
 	citizenship = citizenship_types.pick_random()
@@ -116,7 +116,8 @@ func _init():
 	generate_name_and_age()
 	generate_texture()
 
-	if randi_range(1, 20) == 1:
+	sussyness = pow(randf(), 3)
+	if randf() <= sussyness:
 		traitor = true
 	else:
 		traitor = false

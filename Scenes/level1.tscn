@@ -4,15 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cy1bwyglphnqj" path="res://Scenes/dossier.tscn" id="2_dossier"]
 [ext_resource type="Texture2D" uid="uid://c5ojg2mywrxsl" path="res://Sprites/background_1.webp" id="3_c5erv"]
 [ext_resource type="Script" uid="uid://c62gdbyvacrru" path="res://Scripts/detection.gd" id="3_lyd6k"]
-
-[sub_resource type="Gradient" id="Gradient_wtcfe"]
-offsets = PackedFloat32Array(0.6987952, 1)
-colors = PackedColorArray(0.101960786, 0.101960786, 0.101960786, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_mya75"]
-gradient = SubResource("Gradient_wtcfe")
-fill_from = Vector2(0.5, 0)
-fill_to = Vector2(0.5, 1)
+[ext_resource type="Texture2D" uid="uid://byrpgbdt2betg" path="res://Sprites/travalator.webp" id="3_y4dr7"]
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
@@ -42,14 +34,16 @@ script = ExtResource("1_4hvuo")
 [node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=192485681]
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=175596351]
-z_index = 1
-scale = Vector2(100, 1)
-texture = SubResource("GradientTexture2D_mya75")
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1932597599]
+z_index = 100
+position = Vector2(960, 712.5)
+scale = Vector2(1, 0.8)
+texture = ExtResource("3_y4dr7")
 
-[node name="Detection" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1245081834]
+[node name="Detection" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1245081834 node_paths=PackedStringArray("scan_origin")]
 z_index = 2
 script = ExtResource("3_lyd6k")
+scan_origin = NodePath("../Camera2D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=241325449]
 
