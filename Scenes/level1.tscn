@@ -15,35 +15,34 @@ fill_to = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=455213503]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1865536499]
 offset_right = 1920.0
 offset_bottom = 1080.0
 scale = Vector2(0.8, 0.8)
+stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=286598070]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1405550987]
 handle_input_locally = false
+physics_object_picking = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=2108327590]
+[node name="Sprite2D2" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1330602048]
 texture = ExtResource("3_c5erv")
 centered = false
 
-[node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=579913586]
+[node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=638173762]
 position = Vector2(2000, 900)
 script = ExtResource("1_4hvuo")
 
-[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=1037690795]
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=192485681]
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=2128157938]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=175596351]
 z_index = 2
 scale = Vector2(100, 1)
 texture = SubResource("GradientTexture2D_mya75")
 
-[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=1483917639]
-anchor_mode = 0
-
-[node name="Dossier" parent="." unique_id=1672176019 instance=ExtResource("2_dossier")]
+[node name="Dossier" parent="SubViewportContainer" unique_id=883250715 instance=ExtResource("2_dossier")]
 
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]

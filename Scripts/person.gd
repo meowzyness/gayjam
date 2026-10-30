@@ -7,7 +7,6 @@ var time: float = 0.0
 var personality: Personality
 var direction: Vector2 = Vector2.LEFT
 
-
 func _ready():
 	personality =  Personality.new()
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
