@@ -1,6 +1,5 @@
 class_name Personality
 
-<<<<<<< HEAD
 @export var traitor: bool
 @export var name: String
 @export var surname: String
@@ -9,15 +8,6 @@ class_name Personality
 @export var skin: String
 @export var citizenship: String
 @export var texture: Texture2D
-=======
-var traitor: bool
-var name: String
-var surname: String
-var age: int
-var sex: String
-var citizenship: String
-var texture: Texture2D
->>>>>>> 659a5fedc41c1a55ba5a2b7ba5c9d81a6619a462
 
 var sexes = ["М", "Ж"]
 var first_names_rus_m = [
