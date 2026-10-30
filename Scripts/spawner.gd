@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var person_scene: PackedScene = preload("res://Scenes/person.tscn")
+@onready var person_scene: PackedScene = preload("res://Scenes/person.tscn")
 
 
 func _ready():

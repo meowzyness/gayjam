@@ -1,13 +1,13 @@
 class_name Personality
 
-var traitor: bool
-var name: String
-var surname: String
-var age: int
-var sex: String
-var skin: String
-var citizenship: String
-var texture: Texture2D
+@export var traitor: bool
+@export var name: String
+@export var surname: String
+@export var age: int
+@export var sex: String
+@export var skin: String
+@export var citizenship: String
+@export var texture: Texture2D
 
 var sexes = ["М", "Ж"]
 var first_names_m = ["Иван", "Петр", "Алексей"]
@@ -32,7 +32,7 @@ func _init():
 
 	var textures = []
 	for file in files:
-		if file.ends_with(".webp") and (file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж"):
+		if file.ends_with(".webp") and ((file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж")):
 			textures.append(file)
 	texture = load("res://Sprites/people/" + textures.pick_random())
 

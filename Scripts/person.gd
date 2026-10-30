@@ -1,16 +1,27 @@
 extends CharacterBody2D
 
 
-var is_walker: bool = randi_range(0, 1)
-var speed: float = randf_range(70, 120)
 var time: float = 0.0
+@export var is_walker: bool = randi_range(0, 1)
+@export var direction: Vector2 = Vector2.LEFT
+@export var speed: float = randf_range(70, 120)
 var personality: Personality
-var direction: Vector2 = Vector2.LEFT
+
+@export var box_size := Vector2(100, 200)
+@export var box_offset := Vector2(0, -50)
+
+func get_detection_rect() -> Rect2:
+	return Rect2(global_position + box_offset - box_size / 2.0, box_size)
 
 func _ready():
-	personality =  Personality.new()
+	personality = Personality.new()
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	sprite.texture = personality.texture
+	
+	if !is_walker:
+		sprite.modulate = "#555555"
+		$CollisionShape2D.disabled = true;
+		remove_from_group("detectable")
 	
 	input_pickable = true 
 
@@ -19,10 +30,10 @@ func _ready():
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if personality:
-			print("--- Данные человека ---")
-			print(personality.get_info())
+			#print($/root/Node2D/Dossier)
+			$/root/Node2D/Dossier.update_info(personality)
 
 
 func _physics_process(delta: float) -> void:
