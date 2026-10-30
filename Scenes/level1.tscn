@@ -43,6 +43,8 @@ z_index = 2
 scale = Vector2(100, 1)
 texture = SubResource("GradientTexture2D_mya75")
 
-[node name="Dossier" parent="SubViewportContainer" unique_id=883250715 instance=ExtResource("2_dossier")]
+[node name="Dossier" parent="." unique_id=883250715 instance=ExtResource("2_dossier")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=241325449]
 
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]
