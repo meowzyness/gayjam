@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
 [ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="1_4hvuo"]
-[ext_resource type="PackedScene" path="res://Scenes/dossier.tscn" id="2_dossier"]
+[ext_resource type="PackedScene" uid="uid://cy1bwyglphnqj" path="res://Scenes/dossier.tscn" id="2_dossier"]
 [ext_resource type="Texture2D" uid="uid://c5ojg2mywrxsl" path="res://Sprites/background_1.webp" id="3_c5erv"]
 
 [sub_resource type="Gradient" id="Gradient_wtcfe"]
@@ -15,25 +15,35 @@ fill_to = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2108327590]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=455213503]
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.8, 0.8)
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=286598070]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=2108327590]
 texture = ExtResource("3_c5erv")
 centered = false
 
-[node name="CrowdSpawner" type="Node2D" parent="." unique_id=579913586]
-position = Vector2(2000, 800)
+[node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=579913586]
+position = Vector2(2000, 900)
 script = ExtResource("1_4hvuo")
 
-[node name="Timer" type="Timer" parent="CrowdSpawner" unique_id=1037690795]
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=1037690795]
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="CrowdSpawner" unique_id=2128157938]
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=2128157938]
 z_index = 2
 scale = Vector2(100, 1)
 texture = SubResource("GradientTexture2D_mya75")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=1483917639]
 anchor_mode = 0
 
 [node name="Dossier" parent="." unique_id=1672176019 instance=ExtResource("2_dossier")]
 
-[connection signal="timeout" from="CrowdSpawner/Timer" to="CrowdSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]
