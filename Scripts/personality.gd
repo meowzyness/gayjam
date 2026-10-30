@@ -5,7 +5,6 @@ var name: String
 var surname: String
 var age: int
 var sex: String
-var skin: String
 var citizenship: String
 var texture: Texture2D
 
@@ -108,9 +107,21 @@ var last_names_western_f = [
 
 var citizenship_types = ["Трикарасье", "Новкарасье", "Чегория", "Стромыния", "Сокологора", "Теркастан", "Кашингтон", "Вернандт"]
 
+
 func _init():
 	sex = sexes.pick_random()
 	citizenship = citizenship_types.pick_random()
+	
+	generate_name_and_age()
+	generate_texture()
+	
+	if randi_range(1, 20) == 1:
+		traitor = true
+	else:
+		traitor = false
+
+
+func generate_name_and_age() -> void:
 	if citizenship in ["Трикарасье", "Новкарасье", "Чегория", "Стромыния"]:
 		if sex == "М":
 			name = first_names_rus_m.pick_random()
@@ -119,7 +130,8 @@ func _init():
 			name = first_names_rus_f.pick_random()
 			surname = last_names_rus_f.pick_random()
 		age = randi_range(14, 70)
-	if citizenship in ["Сокологора", "Теркастан"]:
+		
+	elif citizenship in ["Сокологора", "Теркастан"]:
 		if sex == "М":
 			name = first_names_central_asian_m.pick_random()
 			surname = last_names_central_asian_m.pick_random()
@@ -128,7 +140,8 @@ func _init():
 			name = first_names_central_asian_f.pick_random()
 			surname = last_names_central_asian_f.pick_random()
 			age = randi_range(30, 60)
-	if citizenship in ["Кашингтон", "Вернандт"]:
+			
+	elif citizenship in ["Кашингтон", "Вернандт"]:
 		if sex == "М":
 			name = first_names_western_m.pick_random()
 			surname = last_names_western_m.pick_random()
@@ -136,15 +149,36 @@ func _init():
 			name = first_names_western_f.pick_random()
 			surname = last_names_western_f.pick_random()
 		age = randi_range(21, 80)
-	
-	var files = DirAccess.get_files_at("res://Sprites/people/")
 
+
+func generate_texture() -> void:
+	var files = DirAccess.get_files_at("res://Sprites/people/")
 	var textures = []
 	for file in files:
-		if file.ends_with(".webp") and (file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж"):
-			textures.append(file)
-	texture = load("res://Sprites/people/" + textures.pick_random())
+		if file.ends_with(".webp"):
+			if (file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж"):
+				textures.append(file)
+	
+	if textures.size() > 0:
+		texture = load("res://Sprites/people/" + textures.pick_random())
 
+
+func change_sex() -> void:
+	if sex == "М":
+		sex = "Ж"
+	else:
+		sex = "М"
+
+
+func change_citizenship(new_citizenship: String = "") -> void:
+	if new_citizenship == "":
+		citizenship = citizenship_types.pick_random()
+	else:
+		citizenship = new_citizenship
+
+
+func change_age(new_age: int) -> void:
+	age = clampi(new_age, 0, 120)
 
 func get_info():
-	return "%s %s, Возраст: %d, Пол: %s, Цвет кожи: %s, Гражданство: %s" % [name, surname, age, sex, skin, citizenship]
+	return "%s %s, Возраст: %d, Пол: %s, Гражданство: %s" % [name, surname, age, sex, citizenship]
