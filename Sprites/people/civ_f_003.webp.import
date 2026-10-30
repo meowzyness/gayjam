@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7rovcfjaj51o"
-path="res://.godot/imported/civ_m_007.webp-892540eb3e707ffd759eabe43fb9dc9c.ctex"
+uid="uid://blx3hfskq7tbp"
+path="res://.godot/imported/civ_f_003.webp-ca6006b8e50ad3533a4ca54dc63fb957.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/civ_m_007.webp"
-dest_files=["res://.godot/imported/civ_m_007.webp-892540eb3e707ffd759eabe43fb9dc9c.ctex"]
+source_file="res://Sprites/people/civ_f_003.webp"
+dest_files=["res://.godot/imported/civ_f_003.webp-ca6006b8e50ad3533a4ca54dc63fb957.ctex"]
 
 [params]
 

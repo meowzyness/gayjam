@@ -7,6 +7,7 @@ var age: int
 var sex: String
 var skin: String
 var citizenship: String
+var texture: Texture2D
 
 var sexes = ["М", "Ж"]
 var first_names_m = ["Иван", "Петр", "Алексей"]
@@ -26,6 +27,15 @@ func _init():
 		
 	age = randi_range(14, 70)
 	citizenship = citizenship_types.pick_random()
+	
+	var files = DirAccess.get_files_at("res://Sprites/people/")
+
+	var textures = []
+	for file in files:
+		if file.ends_with(".webp") and (file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж"):
+			textures.append(file)
+	texture = load("res://Sprites/people/" + textures.pick_random())
+
 
 func get_info():
 	return "%s %s, Возраст: %d, Пол: %s, Цвет кожи: %s, Гражданство: %s" % [name, surname, age, sex, skin, citizenship]

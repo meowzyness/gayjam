@@ -11,13 +11,8 @@ var direction: Vector2 = Vector2.LEFT
 func _ready():
 	personality =  Personality.new()
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
-	var files = DirAccess.get_files_at("res://Sprites/")
-
-	var textures = []
-	for file in files:
-		if file.ends_with(".webp"):
-			textures.append(file)
-	sprite.texture = load("res://Sprites/" + textures.pick_random())
+	sprite.texture = personality.texture
+	
 	input_pickable = true 
 
 	if not input_event.is_connected(_on_input_event):

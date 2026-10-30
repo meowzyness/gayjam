@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="1_4hvuo"]
 [ext_resource type="PackedScene" path="res://Scenes/dossier.tscn" id="2_dossier"]
+[ext_resource type="Texture2D" uid="uid://c5ojg2mywrxsl" path="res://Sprites/background_1.webp" id="3_c5erv"]
 
 [sub_resource type="Gradient" id="Gradient_wtcfe"]
 offsets = PackedFloat32Array(0.6987952, 1)
@@ -14,8 +15,12 @@ fill_to = Vector2(0.5, 1)
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2108327590]
+texture = ExtResource("3_c5erv")
+centered = false
+
 [node name="CrowdSpawner" type="Node2D" parent="." unique_id=579913586]
-position = Vector2(640, 186)
+position = Vector2(2000, 800)
 script = ExtResource("1_4hvuo")
 
 [node name="Timer" type="Timer" parent="CrowdSpawner" unique_id=1037690795]
@@ -23,12 +28,12 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="CrowdSpawner" unique_id=2128157938]
 z_index = 2
-position = Vector2(-356, 32.95)
-scale = Vector2(31.125, 1.5)
+scale = Vector2(100, 1)
 texture = SubResource("GradientTexture2D_mya75")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1483917639]
+anchor_mode = 0
 
-[node name="Dossier" parent="." instance=ExtResource("2_dossier")]
+[node name="Dossier" parent="." unique_id=1672176019 instance=ExtResource("2_dossier")]
 
 [connection signal="timeout" from="CrowdSpawner/Timer" to="CrowdSpawner" method="_on_timer_timeout"]

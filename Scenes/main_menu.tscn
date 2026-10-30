@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dt6ax7h822nlu"]
 
 [ext_resource type="Script" uid="uid://d2md3hxmlap85" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Texture2D" uid="uid://43ohqe5enc7g" path="res://Sprites/menu.webp" id="2_48xlc"]
 
 [node name="MainMenu" type="Control" unique_id=1213897182]
 layout_mode = 3
@@ -23,8 +24,16 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
 
+[node name="RightPic" type="TextureRect" parent="MarginContainer" unique_id=772357631]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_48xlc")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1049300683]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(100, 0)
 theme_override_constants/separation = 50
 
 [node name="LeftColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1173689378]
@@ -59,13 +68,6 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Выход"
-
-[node name="RightPic" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=772357631]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-expand_mode = 1
-stretch_mode = 5
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonExit" to="." method="_on_exit_button_pressed"]
