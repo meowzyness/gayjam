@@ -16,7 +16,7 @@ func get_detection_rect() -> Rect2:
 func _ready():
 	personality = Personality.new()
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
-	sprite.texture = personality.texture
+	sprite.texture = personality.totaly_real_texture
 	
 	if !is_walker:
 		sprite.modulate = "#555555"

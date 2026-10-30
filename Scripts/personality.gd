@@ -9,7 +9,7 @@ class_name Personality
 @export var skin: String
 @export var citizenship: String
 @export var texture: Texture2D
-@export var fake_texture: Texture2D
+@export var totaly_real_texture: Texture2D
 @export var having_bomb = false
 
 var sexes = ["М", "Ж"]
@@ -118,16 +118,16 @@ func _init():
 	randomize_name()
 	generate_age()
 	texture = generate_texture()
-	fake_texture = texture
+	totaly_real_texture = texture
 
 	sussyness = pow(randf(), 3)
 	if randf() <= sussyness:
 		traitor = true
 		var r = randi_range(1, 2)
 		if r == 1:
-			fake_texture = generate_texture()
-			while texture == fake_texture:
-				fake_texture = generate_texture()
+			totaly_real_texture = generate_texture()
+			while texture == totaly_real_texture:
+				totaly_real_texture = generate_texture()
 		if r == 2:
 			having_bomb = true
 	else:
