@@ -29,16 +29,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 160
+theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
-
-[node name="RightPic" type="TextureRect" parent="MarginContainer" unique_id=772357631]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource("2_48xlc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1049300683]
 layout_mode = 2
