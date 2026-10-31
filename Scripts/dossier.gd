@@ -45,14 +45,18 @@ func update_balance(new_balance: int) -> void:
 		else:
 			balance_label.modulate = Color.WHITE
 
-func update_info(t: Area2D, p: Personality):
-	if p == null:
+func update(t: Area2D):
+	if t == null:
 		return
 	target = t
+	
+	if has_node("/root/Node2D/Scanner"):
+		$/root/Node2D/Scanner.update(t)
+	
 	status_label.modulate = Color.WHITE
-	profile_pic.texture = p.texture
-	name_label.text = "Имя: %s %s" % [p.name, p.surname]
-	age_label.text = "Возраст: %d" % p.age
-	sex_label.text = "Пол: %s" % p.sex
-	citizenship_label.text = "Гражданство: %s" % p.citizenship
+	profile_pic.texture = target.personality.texture
+	name_label.text = "Имя: %s %s" % [target.personality.name, target.personality.surname]
+	age_label.text = "Возраст: %d" % target.personality.age
+	sex_label.text = "Пол: %s" % target.personality.sex
+	citizenship_label.text = "Гражданство: %s" % target.personality.citizenship
 	status_label.text = "Данные получены"

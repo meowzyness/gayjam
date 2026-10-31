@@ -38,10 +38,8 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if event is InputEventMouseButton and event.pressed:
 		if personality:
 			if has_node("/root/Node2D/Dossier"):
-				$/root/Node2D/Dossier.update_info(self, personality)
-			if has_node("/root/Node2D/Scanner"):
-				$/root/Node2D/Scanner.set_target(self, personality)
-				$/root/Node2D/Scanner.update_baggage(personality)
+				$/root/Node2D/Dossier.update(self)
+
 
 func _on_mouse_entered() -> void:
 	hovered = true
