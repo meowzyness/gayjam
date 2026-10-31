@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://b3hyuni8qvh7b"]
 
 [ext_resource type="Script" uid="uid://8s06a5vxy5fw" path="res://Scripts/person.gd" id="1_74dau"]
-[ext_resource type="Texture2D" uid="uid://gd716gkqsotv" path="res://Sprites/people/civ_m_002.webp" id="2_74dau"]
+[ext_resource type="Texture2D" uid="uid://blx3hfskq7tbp" path="res://Sprites/people/civ_f_003.webp" id="2_74dau"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
-size = Vector2(20, 22)
+size = Vector2(24, 18)
 
 [node name="CharacterBody2D" type="Area2D" unique_id=287587039 groups=["detectable"]]
 scale = Vector2(4, 4)
 script = ExtResource("1_74dau")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1339832195]
-position = Vector2(0, -13.5)
+position = Vector2(0, -18)
 scale = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_mya75")
 

@@ -35,9 +35,9 @@ func visibility_score(target: Node2D, rect: Rect2, targets: Array) -> float:
 
 
 var tracked_boxes: Dictionary = {}
+var tracked_targets: Dictionary = {}
 var update_wait: Dictionary = {}
 var hidden_time: Dictionary = {}
-var box_confidences: Dictionary = {}
 
 func _process(delta: float) -> void:
 	var previous_tracks := tracked_boxes
@@ -54,11 +54,13 @@ func _process(delta: float) -> void:
 		var score := visibility_score(target, rect, targets)
 
 		if score <= 0.9:
+			target.input_pickable = false
 			continue
 
 		var hidden := float(hidden_time.get(id, 0.0))
 		if hidden > 0.0:
 			hidden_time[id] = maxf(0.0, hidden - scan_interval)
+			target.input_pickable = false
 			continue
 
 		#if randf() < 0.01:
@@ -67,6 +69,7 @@ func _process(delta: float) -> void:
 
 		if score < 0.5 and randf() < 0.05:
 			hidden_time[id] = randf_range(1.0, 3.0)
+			target.input_pickable = false
 			continue
 
 		var noisy_rect := rect
@@ -102,7 +105,8 @@ func _process(delta: float) -> void:
 				#else:
 				update_wait[id] = randf_range(0.08, 0.2)
 
-		box_confidences[id] = target.personality.sussyness
+		target.input_pickable = true
+		tracked_targets[id] = target
 		tracked_boxes[id] = display_rect
 
 	queue_redraw()
@@ -113,18 +117,20 @@ func _draw() -> void:
 		var rect = tracked_boxes[i]
 		
 		var color := Color.WHITE
-		if box_confidences[i] < 1:
+		if tracked_targets[i].personality.sussyness < 1:
 			color = Color.RED
-		if box_confidences[i] < 0.75:
+		if tracked_targets[i].personality.sussyness < 0.75:
 			color = Color.ORANGE
-		if box_confidences[i] < 0.5:
+		if tracked_targets[i].personality.sussyness < 0.5:
 			color = Color.YELLOW
-		if box_confidences[i] < 0.25:
+		if tracked_targets[i].personality.sussyness < 0.25:
 			color = Color.GREEN
+		if tracked_targets[i].hovered == true:
+			color = Color.SKY_BLUE
 		draw_rect(rect, color, false, 2.0)
 
 
-		var label := "%0.2f" % box_confidences[i]
+		var label := "%0.2f" % tracked_targets[i].personality.sussyness
 		var font := ThemeDB.fallback_font
 
 		draw_string(

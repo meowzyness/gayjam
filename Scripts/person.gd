@@ -5,6 +5,7 @@ var time: float = 0.0
 @export var direction: Vector2 = Vector2.LEFT
 @export var speed: float = randf_range(70, 120)
 var personality: Personality
+var hovered: bool = false
 
 @export var box_size := Vector2(70, 100)
 @export var box_offset := Vector2(0, -70)
@@ -26,8 +27,9 @@ func _ready():
 		z_index = render_rank
 		input_pickable = true 
 
-	if not input_event.is_connected(_on_input_event):
-		input_event.connect(_on_input_event)
+	input_event.connect(_on_input_event)
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -37,6 +39,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				$/root/Node2D/Dossier.update_info(personality)
 			if has_node("/root/Node2D/Scanner"):
 				$/root/Node2D/Scanner.set_target(self, personality)
+
+func _on_mouse_entered() -> void:
+	hovered = true
+
+func _on_mouse_exited() -> void:
+	hovered = false
+
 
 
 func _physics_process(delta: float) -> void:
