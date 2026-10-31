@@ -2,6 +2,16 @@
 
 [ext_resource type="Script" uid="uid://d2md3hxmlap85" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://43ohqe5enc7g" path="res://Sprites/menu.webp" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://b3pvxvdijbmg7" path="res://Sprites/button_normal.webp" id="3_btn_normal"]
+[ext_resource type="Texture2D" uid="uid://4bg365oh0av7" path="res://Sprites/button-hovered.webp" id="4_btn_hover"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
+texture = ExtResource("3_btn_normal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hover"]
+texture = ExtResource("4_btn_hover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
 [node name="MainMenu" type="Control" unique_id=1213897182]
 layout_mode = 3
@@ -63,12 +73,20 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
 text = "Начать"
 
 [node name="ButtonExit" type="Button" parent="MarginContainer/HBoxContainer/LeftColumn" unique_id=357785941]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
 text = "Выход"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="_on_start_button_pressed"]
