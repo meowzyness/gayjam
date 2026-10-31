@@ -29,9 +29,8 @@ func _ready():
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		if personality:
-			if has_node("/root/Node2D/CanvasLayer/UI"):
-				$/root/Node2D/CanvasLayer/UI.update(self)
+		if has_node("/root/Node2D/CanvasLayer/UI"):
+			$/root/Node2D/CanvasLayer/UI.update(self)
 
 func _on_mouse_entered() -> void:
 	hovered = true
@@ -60,6 +59,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = direction * 50.0
 
-	if position.x < -2500:
+	if position.x < -2100:
+		if has_node("/root/Node2D/CanvasLayer/UI"):
+			$/root/Node2D/CanvasLayer/UI.skipped(self)
+	
 		queue_free()
 	position += velocity * delta

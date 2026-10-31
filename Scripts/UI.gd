@@ -5,9 +5,6 @@ var target: Area2D
 var personality: Personality
 var balance: int = 0
 
-signal balance_changed(new_balance: int, change: int)
-signal person_arrested(personality: Personality, was_guilty: bool, reward: int)
-
 @export var scanner: Scanner
 @export var dossier: Dossier
 
@@ -24,7 +21,7 @@ func _ready() -> void:
 	button_inspect.pressed.connect(_on_inspect_pressed)
 
 
-func update(t: Area2D):
+func update(t: Person):
 	if t == null:
 		return
 
@@ -37,14 +34,13 @@ func update(t: Area2D):
 	target = t
 	personality = t.personality
 
-func _on_arrest_pressed() -> void:
-	if target == null:
-		print("никто не выбран для задержания")
-		return
+func skipped(t: Person):
+	var guilty: bool = t.personality.is_guilty()
 
-	var reward: int = target.personality.get_arrest_reward()
-	balance += reward
-	if balance_label:
+	var reward: int = t.personality.get_arrest_reward()
+	if guilty:
+		print("лох")
+		balance -= reward
 		balance_label.text = "Баланс: %d$" % balance
 		if balance > 0:
 			balance_label.modulate = Color(0.3, 0.9, 0.3)
@@ -52,6 +48,23 @@ func _on_arrest_pressed() -> void:
 			balance_label.modulate = Color(0.9, 0.3, 0.3)
 		else:
 			balance_label.modulate = Color.WHITE
+	else:
+		print("норм")
+
+func _on_arrest_pressed() -> void:
+	if target == null:
+		print("никто не выбран для задержания")
+		return
+
+	var reward: int = target.personality.get_arrest_reward()
+	balance += reward
+	balance_label.text = "Баланс: %d$" % balance
+	if balance > 0:
+		balance_label.modulate = Color(0.3, 0.9, 0.3)
+	elif balance < 0:
+		balance_label.modulate = Color(0.9, 0.3, 0.3)
+	else:
+		balance_label.modulate = Color.WHITE
 	
 	var guilty: bool = target.personality.is_guilty()
 
