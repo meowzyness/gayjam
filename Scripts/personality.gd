@@ -25,7 +25,7 @@ var first_names_rus_m = [
 ]
 
 var last_names_rus_m = [
-  "Иванов", "Петров", "Попов", "Бульба",
+  "Иванов", "Петров", "Попов", "Бульба", "Попель",
   "Смирнов", "Кузнецов", "Соколов", "Лебедев", "Козлов", "Новиков",
   "Морозов", "Волков", "Соловьёв", "Васильев", "Зайцев", "Павлов",
   "Семёнов", "Голубев", "Виноградов", "Богданов", "Воробьёв",
@@ -130,7 +130,7 @@ func _init():
 		baggage_y.append(randf_range(0, 1))
 		baggage.append(generate_baggage_texture())
 	
-	sussyness = pow(randf(), 1)
+	sussyness = pow(randf(), 3)
 	if randf() <= sussyness:
 		traitor = true
 		var r = randi_range(1, 2)
