@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c5ojg2mywrxsl" path="res://Sprites/background_1.webp" id="3_c5erv"]
 [ext_resource type="Script" uid="uid://c62gdbyvacrru" path="res://Scripts/detection.gd" id="3_lyd6k"]
 [ext_resource type="Texture2D" uid="uid://byrpgbdt2betg" path="res://Sprites/travalator.webp" id="3_y4dr7"]
+[ext_resource type="PackedScene" uid="uid://b346mb72in2st" path="res://Scenes/scanner.tscn" id="4_scanner"]
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
@@ -45,7 +46,7 @@ z_index = 2
 script = ExtResource("3_lyd6k")
 scan_origin = NodePath("../Camera2D")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=241325449]
+[node name="Scanner" parent="." unique_id=699087597 instance=ExtResource("4_scanner")]
 
 [node name="Dossier" parent="." unique_id=883250715 instance=ExtResource("2_dossier")]
 

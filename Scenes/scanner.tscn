@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://b346mb72in2st"]
+
+[ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/scaner.webp" id="1_scanner_tex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_screen"]
+bg_color = Color(0.18, 0.18, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="Scanner" type="CanvasLayer" unique_id=1389567960]
+
+[node name="Control" type="Control" parent="." unique_id=1050379219]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1551752834]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -336.0
+offset_right = -378.0
+offset_bottom = -9.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=963802852]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ActionsPanel" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=850245814]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ActionsMargin" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/ActionsPanel" unique_id=1056831635]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="ActionsVBox" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin" unique_id=511256314]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActionsTitle" type="Label" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=1746308121]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ДЕЙСТВИЯ"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=891904045]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=1517672782]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer" unique_id=1849201948]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="ButtonInspect" type="Button" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=880383540]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Отправить на досмотр"
+
+[node name="ButtonArrest" type="Button" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=1948201742]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Задержать"
+
+[node name="ScannerPanel" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=1119139436]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScannerMargin" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/ScannerPanel" unique_id=1280420368]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="ScannerVBox" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin" unique_id=259478846]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ScannerTitle" type="Label" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox" unique_id=858992391]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "СКАНЕР БАГАЖА"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox" unique_id=806216971]
+layout_mode = 2
+
+[node name="LuggageBox" type="Panel" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox" unique_id=1327454795]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_screen")
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/LuggageBox" unique_id=1015761336]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_scanner_tex")
+expand_mode = 1
+stretch_mode = 5
