@@ -18,7 +18,7 @@ func _ready():
 	personality = Personality.new()
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	sprite.texture = personality.totaly_real_texture
-	
+
 	if !is_walker:
 		sprite.modulate = "#555555"
 		$CollisionShape2D.disabled = true;
@@ -41,13 +41,13 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				$/root/Node2D/Dossier.update_info(self, personality)
 			if has_node("/root/Node2D/Scanner"):
 				$/root/Node2D/Scanner.set_target(self, personality)
+				$/root/Node2D/Scanner.update_baggage(self, personality)
 
 func _on_mouse_entered() -> void:
 	hovered = true
 
 func _on_mouse_exited() -> void:
 	hovered = false
-
 
 
 func _physics_process(delta: float) -> void:
