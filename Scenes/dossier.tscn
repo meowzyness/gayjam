@@ -107,3 +107,12 @@ theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
 theme_override_font_sizes/font_size = 12
 text = "Выберите гражданина (ПКМ)"
 autowrap_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Control/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=482019481]
+layout_mode = 2
+
+[node name="BalanceLabel" type="Label" parent="Control/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=918237461]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Баланс: 0$"
+horizontal_alignment = 1

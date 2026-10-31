@@ -31,9 +31,12 @@ func _ready():
 
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	if event is InputEventMouseButton and event.pressed:
 		if personality:
-			$/root/Node2D/Dossier.update_info(personality)
+			if has_node("/root/Node2D/Dossier"):
+				$/root/Node2D/Dossier.update_info(personality)
+			if has_node("/root/Node2D/Scanner"):
+				$/root/Node2D/Scanner.set_target(self, personality)
 
 
 func _physics_process(delta: float) -> void:

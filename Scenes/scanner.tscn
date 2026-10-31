@@ -4,15 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://cd6xm3vk8oqkw" path="res://Sprites/action_button.png" id="2_action_normal"]
 [ext_resource type="Texture2D" uid="uid://qaayc5m0yu6y" path="res://Sprites/action_button_hovered.webp" id="3_action_hover"]
 [ext_resource type="Texture2D" uid="uid://diooanfx0dkv6" path="res://Sprites/action_button_pressed.webp" id="4_action_pressed"]
+[ext_resource type="Script" path="res://Scripts/scanner.gd" id="5_scanner_script"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_normal"]
 texture = ExtResource("2_action_normal")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_hover"]
-texture = ExtResource("3_action_hover")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_pressed"]
 texture = ExtResource("4_action_pressed")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_hover"]
+texture = ExtResource("3_action_hover")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_act_focus"]
 
@@ -24,6 +25,7 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="Scanner" type="CanvasLayer" unique_id=1389567960]
+script = ExtResource("5_scanner_script")
 
 [node name="Control" type="Control" parent="." unique_id=1050379219]
 layout_mode = 3
@@ -97,10 +99,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_act_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_act_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_act_pressed")
 theme_override_styles/normal = SubResource("StyleBoxTexture_act_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_act_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_act_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_act_focus")
 text = "Отправить на досмотр"
 
 [node name="ButtonArrest" type="Button" parent="Control/MarginContainer/HBoxContainer/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=1948201742]
@@ -109,10 +111,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxEmpty_act_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_act_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_act_pressed")
 theme_override_styles/normal = SubResource("StyleBoxTexture_act_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_act_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_act_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_act_focus")
 text = "Задержать"
 
 [node name="ScannerPanel" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=1119139436]

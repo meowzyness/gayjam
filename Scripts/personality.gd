@@ -11,6 +11,13 @@ class_name Personality
 @export var texture: Texture2D
 @export var totaly_real_texture: Texture2D
 @export var having_bomb = false
+@export var arrest_reward: int = 300
+
+func is_guilty() -> bool:
+	return traitor
+
+func get_arrest_reward() -> int:
+	return arrest_reward if is_guilty() else -arrest_reward
 
 var sexes = ["М", "Ж"]
 var first_names_rus_m = [
