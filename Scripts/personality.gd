@@ -140,18 +140,13 @@ func _init():
 
 	sussyness = pow(randf(), 3)
 	if randf() <= sussyness:
+		getting_traitor()
+	elif texture in Banned.ban['banned_textures'] or age in Banned.ban['banned_ages']: 
 		traitor = true
-		var r = randi_range(1, 2)
-		if r == 1:
-			totaly_real_texture = generate_texture()
-			while texture == totaly_real_texture:
-				totaly_real_texture = generate_texture()
-		elif r == 2:
-			print('having_danger')
-			having_danger = true
-			baggage_x.append(randf_range(0, 1))
-			baggage_y.append(randf_range(0, 1))
-			baggage.append(generate_baggage_danger_texture())
+	elif name in Banned.ban['banned_names'] or surname in Banned.ban['banned_surnames']: 
+		traitor = true
+	elif citizenship in Banned.ban['banned_names']: 
+		traitor = true
 	else:
 		traitor = false
 
@@ -227,6 +222,41 @@ func randomize_name() -> void:
 		else:
 			name = first_names_western_f.pick_random()
 			surname = last_names_western_f.pick_random()
+
+
+func getting_traitor():
+	traitor = true
+	var r: int
+	if Banned.amount_of_banning_lists == 0:
+		r = randi_range(1, 2)
+	else:
+		r = randi_range(1, 3)
+	if r == 1:
+		totaly_real_texture = generate_texture()
+		while texture == totaly_real_texture:
+			totaly_real_texture = generate_texture()
+	elif r == 2:
+		print('having_danger')
+		having_danger = true
+		baggage_x.append(randf_range(0, 1))
+		baggage_y.append(randf_range(0, 1))
+		baggage.append(generate_baggage_danger_texture())
+	elif r == 3:
+		r = randi_range(1, Banned.amount_of_banning_lists)
+		var ban_lists = Banned.get_ban_lists()
+		for i_ban_list in range(len(ban_lists)):
+			if i_ban_list == (r - 1):
+				if ban_lists[i_ban_list] == 'banned_ages':
+					age = Banned.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_citizenship':
+					citizenship = Banned.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_names':
+					name = Banned.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_surnames':
+					surname = Banned.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_textures':
+					texture = Banned.ban[ban_lists[i_ban_list]].pick_random()
+					totaly_real_texture = Banned.ban[ban_lists[i_ban_list]].pick_random()
 
 
 func change_sex():
