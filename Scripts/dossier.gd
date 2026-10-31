@@ -6,11 +6,12 @@ class_name Dossier
 @export var sex_label: Label
 @export var citizenship_label: Label
 @export var profile_pic: TextureRect
+@export var placeholder: Texture
 
 
 func update(t: Person):
 	if !t:
-		profile_pic.texture = null
+		profile_pic.texture = placeholder
 		name_label.text = "Имя: -"
 		age_label.text = "Возраст: -"
 		sex_label.text = "Пол: -"

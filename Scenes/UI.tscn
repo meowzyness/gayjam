@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ctfgib7m61qu5" path="res://Scripts/UI.gd" id="1_w371h"]
 [ext_resource type="Script" uid="uid://b3wefoc1smlyd" path="res://Scripts/dossier.gd" id="2_hfhsn"]
 [ext_resource type="Script" uid="uid://b57bamvh2435v" path="res://Scripts/scanner.gd" id="2_nxvpl"]
+[ext_resource type="Texture2D" uid="uid://byade5we45017" path="res://Sprites/icon.svg" id="3_48q88"]
 [ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/scaner.webp" id="5_48q88"]
 [ext_resource type="Texture2D" uid="uid://c6k71wqn2sjl6" path="res://Sprites/baggage/scan_suitcase.png" id="6_xjg7p"]
 
@@ -58,6 +59,7 @@ age_label = NodePath("MarginContainer/VBoxContainer/InfoList/AgeLabel")
 sex_label = NodePath("MarginContainer/VBoxContainer/InfoList/SexLabel")
 citizenship_label = NodePath("MarginContainer/VBoxContainer/InfoList/CitizenshipLabel")
 profile_pic = NodePath("MarginContainer/VBoxContainer/PortraitBox/TextureRect")
+placeholder = ExtResource("3_48q88")
 
 [node name="Actions" type="Panel" parent="Dossier" unique_id=2102509208]
 layout_mode = 1
@@ -152,21 +154,6 @@ custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_48q88")
 
-[node name="Label" type="Label" parent="Dossier/MarginContainer/VBoxContainer/PortraitBox" unique_id=893920030]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -11.5
-offset_right = 23.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Фото"
-
 [node name="TextureRect" type="TextureRect" parent="Dossier/MarginContainer/VBoxContainer/PortraitBox" unique_id=604653144]
 layout_mode = 1
 anchors_preset = 8
@@ -181,6 +168,7 @@ offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_48q88")
 
 [node name="HSeparator" type="HSeparator" parent="Dossier/MarginContainer/VBoxContainer" unique_id=37450566]
 layout_mode = 2
