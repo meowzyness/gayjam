@@ -152,6 +152,21 @@ custom_minimum_size = Vector2(0, 140)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_48q88")
 
+[node name="Label" type="Label" parent="Dossier/MarginContainer/VBoxContainer/PortraitBox" unique_id=893920030]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -11.5
+offset_right = 23.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Фото"
+
 [node name="TextureRect" type="TextureRect" parent="Dossier/MarginContainer/VBoxContainer/PortraitBox" unique_id=604653144]
 layout_mode = 1
 anchors_preset = 8

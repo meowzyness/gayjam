@@ -22,17 +22,15 @@ func _ready() -> void:
 
 
 func update(t: Person):
-	if t == null:
-		return
-
-	if scanner and target != t:
+	if scanner:
 		scanner.update(t)
 		
-	if dossier and target != t:
+	if dossier:
 		dossier.update(t)
 
-	target = t
-	personality = t.personality
+	if t:
+		target = t
+		personality = t.personality
 
 func skipped(t: Person):
 	var guilty: bool = t.personality.is_guilty()
@@ -82,6 +80,7 @@ func _on_arrest_pressed() -> void:
 
 	target.personality = null
 	target = null
+	update(null)
 
 func _on_inspect_pressed() -> void:
 	if target.personality == null:

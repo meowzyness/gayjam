@@ -5,11 +5,13 @@ class_name Scanner
 @export var max_scale := 1.0
 
 func update(t: Person):
-	var item_textures = t.personality.baggage
-	
 	for child in bounds_shape.get_children():
 		child.queue_free()
+	
+	if !t:
+		return
 
+	var item_textures = t.personality.baggage
 	var bounds := bounds_shape.shape as RectangleShape2D
 	var bounds_half := bounds.size / 2.0
 

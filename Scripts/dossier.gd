@@ -9,6 +9,14 @@ class_name Dossier
 
 
 func update(t: Person):
+	if !t:
+		profile_pic.texture = null
+		name_label.text = "Имя: -"
+		age_label.text = "Возраст: -"
+		sex_label.text = "Пол: -"
+		citizenship_label.text = "Гражданство: -"
+		return
+
 	var p: Personality = t.personality
 
 	profile_pic.texture = t.personality.texture
