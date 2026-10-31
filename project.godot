@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*uid://b8funa4o6vbcr"
+Banned="*uid://bbjp4iix2w8ha"
 
 [display]
 
