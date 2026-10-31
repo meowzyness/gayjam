@@ -10,7 +10,10 @@ class_name Personality
 @export var citizenship: String
 @export var texture: Texture2D
 @export var totaly_real_texture: Texture2D
-@export var having_bomb = false
+@export var baggage = []
+@export var baggage_x = []
+@export var baggage_y = []
+@export var having_danger = false
 
 var sexes = ["М", "Ж"]
 var first_names_rus_m = [
@@ -119,8 +122,15 @@ func _init():
 	generate_age()
 	texture = generate_texture()
 	totaly_real_texture = texture
-
-	sussyness = pow(randf(), 3)
+	
+	var amount_of_baggage = randi_range(2, 4)
+	while amount_of_baggage >= 0:
+		amount_of_baggage -= 1
+		baggage_x.append(randf_range(0, 1))
+		baggage_y.append(randf_range(0, 1))
+		baggage.append(generate_baggage_texture())
+	
+	sussyness = pow(randf(), 1)
 	if randf() <= sussyness:
 		traitor = true
 		var r = randi_range(1, 2)
@@ -128,8 +138,12 @@ func _init():
 			totaly_real_texture = generate_texture()
 			while texture == totaly_real_texture:
 				totaly_real_texture = generate_texture()
-		if r == 2:
-			having_bomb = true
+		elif r == 2:
+			print('having_danger')
+			having_danger = true
+			baggage_x.append(randf_range(0, 1))
+			baggage_y.append(randf_range(0, 1))
+			baggage.append(generate_baggage_danger_texture())
 	else:
 		traitor = false
 
@@ -144,6 +158,29 @@ func generate_texture():
 
 	if textures.size() > 0:
 		return load("res://Sprites/people/" + textures.pick_random())
+
+
+func generate_baggage_texture():
+	var files = DirAccess.get_files_at("res://Sprites/baggage/")
+	var textures = []
+	for file in files:
+		if file.ends_with(".png") and file.contains("item"):
+			textures.append(file)
+
+	if textures.size() > 0:
+		return load("res://Sprites/baggage/" + textures.pick_random())
+
+
+func generate_baggage_danger_texture():
+	var files = DirAccess.get_files_at("res://Sprites/baggage/")
+	var textures = []
+	for file in files:
+		if file.ends_with(".png") and file.contains("danger"):
+			textures.append(file)
+
+	if textures.size() > 0:
+		print('гойда')
+		return load("res://Sprites/baggage/" + textures.pick_random())
 
 
 func generate_age():

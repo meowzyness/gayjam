@@ -34,6 +34,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		if personality:
 			$/root/Node2D/Dossier.update_info(personality)
+			$/root/Node2D/Scanner.update_baggage(personality)
 
 
 func _physics_process(delta: float) -> void:
