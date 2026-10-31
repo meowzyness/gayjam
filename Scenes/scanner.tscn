@@ -1,8 +1,21 @@
 [gd_scene format=3 uid="uid://b346mb72in2st"]
 
 [ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/scaner.webp" id="1_scanner_tex"]
-[ext_resource type="Script" uid="uid://bsvpg7g726efm" path="res://Scenes/scanner.gd" id="1_vlukv"]
-[ext_resource type="Texture2D" uid="uid://c6k71wqn2sjl6" path="res://Sprites/baggage/scan_suitcase.png" id="2_yqolc"]
+[ext_resource type="Texture2D" uid="uid://cd6xm3vk8oqkw" path="res://Sprites/action_button.png" id="2_action_normal"]
+[ext_resource type="Texture2D" uid="uid://qaayc5m0yu6y" path="res://Sprites/action_button_hovered.webp" id="3_action_hover"]
+[ext_resource type="Texture2D" uid="uid://diooanfx0dkv6" path="res://Sprites/action_button_pressed.webp" id="4_action_pressed"]
+[ext_resource type="Script" uid="uid://b57bamvh2435v" path="res://Scripts/scanner.gd" id="5_scanner_script"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_normal"]
+texture = ExtResource("2_action_normal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_pressed"]
+texture = ExtResource("4_action_pressed")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_act_hover"]
+texture = ExtResource("3_action_hover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_act_focus"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_screen"]
 bg_color = Color(0.18, 0.18, 0.22, 1)
@@ -11,14 +24,8 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1763"]
-size = Vector2(90.821686, 76.47541)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnnt8"]
-size = Vector2(20, 126)
-
 [node name="Scanner" type="CanvasLayer" unique_id=1389567960]
-script = ExtResource("1_vlukv")
+script = ExtResource("5_scanner_script")
 
 [node name="Control" type="Control" parent="." unique_id=1050379219]
 layout_mode = 3
@@ -151,28 +158,3 @@ grow_vertical = 2
 texture = ExtResource("1_scanner_tex")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox" unique_id=1612363135]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Suitcase" type="Sprite2D" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/HBoxContainer" unique_id=2048537883]
-position = Vector2(-1, -149)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_yqolc")
-
-[node name="SpawnZone" type="Area2D" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/HBoxContainer" unique_id=565868319]
-position = Vector2(0, -130)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/HBoxContainer/SpawnZone" unique_id=216221289]
-position = Vector2(1, -0.5)
-scale = Vector2(0.9248898, 0.61457705)
-shape = SubResource("RectangleShape2D_c1763")
-
-[node name="RangeZone" type="Area2D" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/HBoxContainer" unique_id=1001063845]
-position = Vector2(1, -131)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/MarginContainer/HBoxContainer/ScannerPanel/ScannerMargin/ScannerVBox/HBoxContainer/RangeZone" unique_id=215575947]
-shape = SubResource("RectangleShape2D_tnnt8")
