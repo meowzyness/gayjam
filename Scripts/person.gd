@@ -6,8 +6,8 @@ var time: float = 0.0
 @export var speed: float = randf_range(70, 120)
 var personality: Personality
 
-@export var box_size := Vector2(70, 150)
-@export var box_offset := Vector2(0, -50)
+@export var box_size := Vector2(70, 100)
+@export var box_offset := Vector2(0, -70)
 var render_rank := randi_range(0, 50)
 
 func get_detection_rect() -> Rect2:
