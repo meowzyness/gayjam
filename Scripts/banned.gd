@@ -3,11 +3,11 @@ extends Node
 var amount_of_banning_lists = 1
 
 var ban = {
-	"banned_ages": [10, 999],
-	"banned_citizenship": ["ЫЫЫЫЫЫЫЫЫ"],
+	"banned_ages": [],
+	"banned_citizenship": [],
 	"banned_names": [],
 	"banned_surnames": [],
-	"banned_textures": []
+	"banned_textures": [load("res://Sprites/people/civ_f_001t.webp")]
 }
 
 
