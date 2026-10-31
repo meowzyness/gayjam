@@ -131,7 +131,7 @@ func _init():
 	texture = generate_texture()
 	totaly_real_texture = texture
 
-	var amount_of_baggage = randi_range(2, 4)
+	var amount_of_baggage = randi_range(4, 10)
 	while amount_of_baggage >= 0:
 		amount_of_baggage -= 1
 		baggage_x.append(randf_range(0, 1))

@@ -1,0 +1,276 @@
+[gd_scene format=3 uid="uid://k1w036y3b5pa"]
+
+[ext_resource type="Script" uid="uid://ctfgib7m61qu5" path="res://Scripts/UI.gd" id="1_w371h"]
+[ext_resource type="Script" uid="uid://b3wefoc1smlyd" path="res://Scripts/dossier.gd" id="2_hfhsn"]
+[ext_resource type="Script" uid="uid://b57bamvh2435v" path="res://Scripts/scanner.gd" id="2_nxvpl"]
+[ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/scaner.webp" id="5_48q88"]
+[ext_resource type="Texture2D" uid="uid://c6k71wqn2sjl6" path="res://Sprites/baggage/scan_suitcase.png" id="6_xjg7p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48q88"]
+bg_color = Color(0.18, 0.18, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wvm1h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg6lk"]
+bg_color = Color(0.18, 0.18, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wunin"]
+size = Vector2(658.45685, 691.5326)
+
+[node name="UI" type="Control" unique_id=1778935788 node_paths=PackedStringArray("scanner", "dossier", "button_inspect", "button_arrest", "status_label", "balance_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_w371h")
+scanner = NodePath("Scanner")
+dossier = NodePath("Dossier")
+button_inspect = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonInspect")
+button_arrest = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonArrest")
+status_label = NodePath("Dossier/MarginContainer/VBoxContainer/StatusLabel")
+balance_label = NodePath("Dossier/MarginContainer/VBoxContainer/BalanceLabel")
+
+[node name="Dossier" type="Panel" parent="." unique_id=1840527199 node_paths=PackedStringArray("name_label", "age_label", "sex_label", "citizenship_label", "profile_pic")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+grow_horizontal = 0
+grow_vertical = 2
+offset_transform_enabled = true
+mouse_filter = 1
+script = ExtResource("2_hfhsn")
+name_label = NodePath("MarginContainer/VBoxContainer/InfoList/NameLabel")
+age_label = NodePath("MarginContainer/VBoxContainer/InfoList/AgeLabel")
+sex_label = NodePath("MarginContainer/VBoxContainer/InfoList/SexLabel")
+citizenship_label = NodePath("MarginContainer/VBoxContainer/InfoList/CitizenshipLabel")
+profile_pic = NodePath("MarginContainer/VBoxContainer/PortraitBox/TextureRect")
+
+[node name="Actions" type="Panel" parent="Dossier" unique_id=2102509208]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -270.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="ActionsPanel" type="PanelContainer" parent="Dossier/Actions" unique_id=1217024068]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="ActionsMargin" type="MarginContainer" parent="Dossier/Actions/ActionsPanel" unique_id=1457971743]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="ActionsVBox" type="VBoxContainer" parent="Dossier/Actions/ActionsPanel/ActionsMargin" unique_id=172910438]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ActionsTitle" type="Label" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=2007109495]
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/font_size = 18
+text = "ДЕЙСТВИЯ"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=1713905887]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox" unique_id=165977440]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer" unique_id=1626626770]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="ButtonInspect" type="Button" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=803858603]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Отправить на досмотр"
+
+[node name="ButtonArrest" type="Button" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=29198869]
+custom_minimum_size = Vector2(340, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 24
+text = "Задержать"
+
+[node name="MarginContainer" type="MarginContainer" parent="Dossier" unique_id=2103945155]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 810.0
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dossier/MarginContainer" unique_id=2132359976]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1074667797]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ДОСЬЕ"
+horizontal_alignment = 1
+
+[node name="PortraitBox" type="Panel" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1022327340]
+clip_children = 1
+custom_minimum_size = Vector2(0, 140)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_48q88")
+
+[node name="TextureRect" type="TextureRect" parent="Dossier/MarginContainer/VBoxContainer/PortraitBox" unique_id=604653144]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -95.0
+offset_right = 200.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+
+[node name="HSeparator" type="HSeparator" parent="Dossier/MarginContainer/VBoxContainer" unique_id=37450566]
+layout_mode = 2
+
+[node name="InfoList" type="VBoxContainer" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1354776906]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="NameLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=64476306]
+layout_mode = 2
+text = "Имя: -"
+
+[node name="AgeLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=792735768]
+layout_mode = 2
+text = "Возраст: -"
+
+[node name="SexLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=458550517]
+layout_mode = 2
+text = "Пол: -"
+
+[node name="CitizenshipLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=1829085584]
+layout_mode = 2
+text = "Гражданство: -"
+
+[node name="HSeparator2" type="HSeparator" parent="Dossier/MarginContainer/VBoxContainer" unique_id=471265065]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=781001445]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 12
+text = "Выберите гражданина (ПКМ)"
+
+[node name="HSeparator3" type="HSeparator" parent="Dossier/MarginContainer/VBoxContainer" unique_id=96196199]
+layout_mode = 2
+
+[node name="BalanceLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1004878937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Баланс: 0$"
+horizontal_alignment = 1
+
+[node name="Scanner" type="Panel" parent="." unique_id=865017791 node_paths=PackedStringArray("bounds_shape")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -270.0
+offset_right = -480.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("2_nxvpl")
+bounds_shape = NodePath("HBoxContainer/ScannerPanel/SpawnZone/CollisionShape2D")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scanner" unique_id=1419592241]
+layout_mode = 0
+offset_left = 6.0
+offset_right = 1440.0
+offset_bottom = 270.0
+theme_override_constants/separation = 6
+
+[node name="ScannerPanel" type="PanelContainer" parent="Scanner/HBoxContainer" unique_id=1154792316]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1440366374]
+layout_mode = 2
+texture = SubResource("CanvasTexture_wvm1h")
+
+[node name="LuggageBox" type="Panel" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1899709214]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mg6lk")
+
+[node name="TextureRect" type="TextureRect" parent="Scanner/HBoxContainer/ScannerPanel/LuggageBox" unique_id=1860292355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1053.0
+offset_top = 37.0
+offset_right = 1.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_48q88")
+expand_mode = 1
+
+[node name="SpawnZone" type="Area2D" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1265178941]
+position = Vector2(590, 118)
+scale = Vector2(0.5, 0.5)
+
+[node name="Suitcase" type="Sprite2D" parent="Scanner/HBoxContainer/ScannerPanel/SpawnZone" unique_id=91878089]
+texture = ExtResource("6_xjg7p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Scanner/HBoxContainer/ScannerPanel/SpawnZone" unique_id=88589137]
+position = Vector2(-0.49999237, 61.5)
+scale = Vector2(0.9248898, 0.61457705)
+shape = SubResource("RectangleShape2D_wunin")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=906694632]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1

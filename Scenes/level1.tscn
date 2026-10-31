@@ -1,18 +1,26 @@
 [gd_scene format=3 uid="uid://djuwkfn240ega"]
 
 [ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="1_4hvuo"]
-[ext_resource type="PackedScene" uid="uid://cy1bwyglphnqj" path="res://Scenes/dossier.tscn" id="2_dossier"]
 [ext_resource type="Texture2D" uid="uid://c5ojg2mywrxsl" path="res://Sprites/background_1.webp" id="3_c5erv"]
 [ext_resource type="Script" uid="uid://c62gdbyvacrru" path="res://Scripts/detection.gd" id="3_lyd6k"]
 [ext_resource type="Texture2D" uid="uid://byrpgbdt2betg" path="res://Sprites/travalator.webp" id="3_y4dr7"]
-[ext_resource type="PackedScene" uid="uid://b346mb72in2st" path="res://Scenes/scanner.tscn" id="4_scanner"]
+[ext_resource type="PackedScene" uid="uid://k1w036y3b5pa" path="res://Scenes/UI.tscn" id="5_y4dr7"]
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=340385995]
+
+[node name="UI" parent="CanvasLayer" unique_id=1778935788 instance=ExtResource("5_y4dr7")]
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1865536499]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_right = 1920.0
 offset_bottom = 1080.0
-scale = Vector2(0.8, 0.8)
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1405550987]
@@ -29,7 +37,7 @@ texture = ExtResource("3_c5erv")
 centered = false
 
 [node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=638173762]
-position = Vector2(2000, 900)
+position = Vector2(2000, 825)
 script = ExtResource("1_4hvuo")
 
 [node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=192485681]
@@ -37,7 +45,7 @@ autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1932597599]
 z_index = 100
-position = Vector2(960, 712.5)
+position = Vector2(964, 850)
 scale = Vector2(1, 0.8)
 texture = ExtResource("3_y4dr7")
 
@@ -45,9 +53,5 @@ texture = ExtResource("3_y4dr7")
 z_index = 2
 script = ExtResource("3_lyd6k")
 scan_origin = NodePath("../Camera2D")
-
-[node name="Scanner" parent="." unique_id=699087597 instance=ExtResource("4_scanner")]
-
-[node name="Dossier" parent="." unique_id=883250715 instance=ExtResource("2_dossier")]
 
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]

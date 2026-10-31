@@ -131,15 +131,12 @@ func _draw() -> void:
 		if tracked_targets[i].hovered == true:
 			color = color.darkened(0.1)
 			label = tracked_targets[i].personality.name
-		if tracked_targets[i] == $/root/Node2D/Dossier.target:
+		if tracked_targets[i] == $/root/Node2D/CanvasLayer/UI.target:
 			color = Color.LIGHT_BLUE
 			label = tracked_targets[i].personality.name
 			width = 4.0
 
 		draw_rect(rect, color, false, width)
-
-
-
 		draw_string(
 			font,
 			Vector2(rect.position.x, rect.position.y - 6),

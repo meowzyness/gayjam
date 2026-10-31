@@ -1,4 +1,5 @@
 extends Area2D
+class_name Person
 
 var time: float = 0.0
 @export var is_walker: bool = randi_range(0, 1)
@@ -19,14 +20,6 @@ func _ready():
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	sprite.texture = personality.totaly_real_texture
 
-	if !is_walker:
-		sprite.modulate = "#555555"
-		$CollisionShape2D.disabled = true;
-		remove_from_group("detectable")
-	else:
-		z_index = render_rank
-		input_pickable = true 
-
 	if !input_event.is_connected(_on_input_event):
 		input_event.connect(_on_input_event)
 
@@ -37,9 +30,8 @@ func _ready():
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if personality:
-			if has_node("/root/Node2D/Dossier"):
-				$/root/Node2D/Dossier.update(self)
-
+			if has_node("/root/Node2D/CanvasLayer/UI"):
+				$/root/Node2D/CanvasLayer/UI.update(self)
 
 func _on_mouse_entered() -> void:
 	hovered = true
@@ -50,6 +42,16 @@ func _on_mouse_exited() -> void:
 
 func _physics_process(delta: float) -> void:
 	time += delta
+	
+	var sprite: Sprite2D = $Sprite2D as Sprite2D
+	if !is_walker:
+		sprite.modulate = "#555555"
+		$CollisionShape2D.disabled = true;
+		remove_from_group("detectable")
+	else:
+		z_index = render_rank
+		input_pickable = true 
+	
 	var velocity
 	if is_walker:
 		position.y = -abs(sin(time * speed/8) * 4)
