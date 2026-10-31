@@ -73,20 +73,20 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
 theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "Начать"
 
 [node name="ButtonExit" type="Button" parent="MarginContainer/HBoxContainer/LeftColumn" unique_id=357785941]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
 theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "Выход"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="_on_start_button_pressed"]

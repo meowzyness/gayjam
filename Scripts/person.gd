@@ -27,7 +27,9 @@ func _ready():
 		z_index = render_rank
 		input_pickable = true 
 
-	input_event.connect(_on_input_event)
+	if !input_event.is_connected(_on_input_event):
+		input_event.connect(_on_input_event)
+
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
@@ -36,7 +38,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 	if event is InputEventMouseButton and event.pressed:
 		if personality:
 			if has_node("/root/Node2D/Dossier"):
-				$/root/Node2D/Dossier.update_info(personality)
+				$/root/Node2D/Dossier.update_info(self, personality)
 			if has_node("/root/Node2D/Scanner"):
 				$/root/Node2D/Scanner.set_target(self, personality)
 

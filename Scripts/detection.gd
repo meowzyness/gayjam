@@ -115,6 +115,9 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	for i in tracked_boxes.keys():
 		var rect = tracked_boxes[i]
+		var label := "%0.2f" % tracked_targets[i].personality.sussyness
+		var font := ThemeDB.fallback_font
+		var width := 2.0
 		
 		var color := Color.WHITE
 		if tracked_targets[i].personality.sussyness < 1:
@@ -126,12 +129,16 @@ func _draw() -> void:
 		if tracked_targets[i].personality.sussyness < 0.25:
 			color = Color.GREEN
 		if tracked_targets[i].hovered == true:
-			color = Color.SKY_BLUE
-		draw_rect(rect, color, false, 2.0)
+			color = color.darkened(0.1)
+			label = tracked_targets[i].personality.name
+		if tracked_targets[i] == $/root/Node2D/Dossier.target:
+			color = Color.LIGHT_BLUE
+			label = tracked_targets[i].personality.name
+			width = 4.0
+
+		draw_rect(rect, color, false, width)
 
 
-		var label := "%0.2f" % tracked_targets[i].personality.sussyness
-		var font := ThemeDB.fallback_font
 
 		draw_string(
 			font,

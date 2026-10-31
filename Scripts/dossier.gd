@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var status_label = $Control/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/StatusLabel
 @onready var profile_pic = $Control/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PortraitBox/TextureRect
 @onready var balance_label = $Control/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/BalanceLabel
+var target: Area2D
 
 var balance: int = 0
 
@@ -44,9 +45,10 @@ func update_balance(new_balance: int) -> void:
 		else:
 			balance_label.modulate = Color.WHITE
 
-func update_info(p: Personality):
+func update_info(t: Area2D, p: Personality):
 	if p == null:
 		return
+	target = t
 	status_label.modulate = Color.WHITE
 	profile_pic.texture = p.texture
 	name_label.text = "Имя: %s %s" % [p.name, p.surname]
