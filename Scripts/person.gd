@@ -45,6 +45,7 @@ func _physics_process(delta: float) -> void:
 	
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	if !is_walker:
+		z_index = 0
 		sprite.modulate = "#555555"
 		$CollisionShape2D.disabled = true;
 		remove_from_group("detectable")
