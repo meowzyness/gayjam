@@ -44,15 +44,16 @@ func update(t: Person):
 		target = t
 		personality = t.personality
 	
-	while Globals.banned_people.size() > banned_people.get_children().size():
+	while Globals.ban['banned_people'].size() > banned_people.get_children().size():
 		banned_people.add_child(banned_person.instantiate())
-	while Globals.banned_people.size() < banned_people.get_children().size():
+	while Globals.ban['banned_people'].size() < banned_people.get_children().size():
 		banned_people.get_child(0).free()
 
 	for i in range(banned_people.get_children().size()):
-		banned_people.get_children()[i].get_child(0).texture = Globals.banned_people[i].texture
-		banned_people.get_children()[i].get_child(1).text = Globals.banned_people[i].name + " " + Globals.banned_people[i].surname
-	banned_citizenships.text = "Запрещенные страны: " + str(Globals.banned_citizenships)
+		if len(Globals.ban['banned_people']) > 0:
+			banned_people.get_children()[i].get_child(0).texture = Globals.ban['banned_people'][i].texture
+			banned_people.get_children()[i].get_child(1).text = Globals.ban['banned_people'][i].name + " " + Globals.ban['banned_people'][i].surname
+	banned_citizenships.text = "Запрещенные страны: " + str(Globals.ban['banned_citizenships'])
 
 func skipped(t: Person):
 	var guilty: bool = t.personality.is_guilty()
@@ -66,9 +67,9 @@ func skipped(t: Person):
 		status_label.visible = true
 		status_label.get_child(0).start()
 		AudioManager.play_ui_sound("incorrect")
-		for p in Globals.banned_people:
+		for p in Globals.ban['banned_people']:
 			if t.personality.name == p.name and t.personality.surname == p.surname and t.personality.texture == p.texture:
-				Globals.banned_people.erase(p)
+				Globals.ban['banned_people'].erase(p)
 
 func _on_arrest_pressed() -> void:
 	if target == null:
@@ -95,9 +96,9 @@ func _on_arrest_pressed() -> void:
 		AudioManager.play_ui_sound("incorrect")
 		
 
-	for p in Globals.banned_people:
+	for p in Globals.ban['banned_people']:
 		if target.personality.name == p.name and target.personality.surname == p.surname and target.personality.texture == p.texture:
-			Globals.banned_people.erase(p)
+			Globals.ban['banned_people'].erase(p)
 
 	if target:
 		target.is_walker = false

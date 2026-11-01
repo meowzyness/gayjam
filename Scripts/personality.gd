@@ -25,7 +25,9 @@ func get_arrest_reward() -> int:
 
 func _init():
 	sex = Globals.sexes.pick_random()
-	citizenship = Globals.citizenship_types.filter(func(item): return not Globals.banned_citizenships.has(item)).pick_random()
+	citizenship = Globals.citizenship_types.pick_random()
+	while citizenship in Globals.ban['banned_citizenships']:
+		citizenship = Globals.citizenship_types.pick_random()
 
 	randomize_name()
 	generate_age()
@@ -34,19 +36,21 @@ func _init():
 
 	var amount_of_baggage = randi_range(4, 10)
 	while amount_of_baggage >= 0:
-		amount_of_baggage -= 1
-		baggage_x.append(randf_range(0, 1))
-		baggage_y.append(randf_range(0, 1))
-		baggage.append(generate_baggage_texture())
+		var b = generate_baggage_texture()
+		if b not in Globals.ban['banned_baggage']:
+			baggage_x.append(randf_range(0, 1))
+			baggage_y.append(randf_range(0, 1))
+			baggage.append(b)
+			amount_of_baggage -= 1
 
 	sussyness = pow(randf(), 2)
 	if 1 - pow(randf(), 2) <= sussyness:
 		getting_traitor()
 	
-	# edge case if a person happened to be same as a wanted person
-	for p in Globals.banned_people:
+	for p in Globals.ban['banned_people']:
 		if name == p.name and surname == p.surname and texture == p.texture:
-			traitor = true
+			if not traitor:
+				randomize_name()
 
 
 func generate_texture():
@@ -123,11 +127,11 @@ func randomize_name() -> void:
 
 func getting_traitor():
 	traitor = true
-	var r: int = randi_range(1, 4)
-	#if Globals.amount_of_banning_lists == 0:
-		#r = randi_range(1, 2)
-	#else:
-		#r = randi_range(1, 3)
+	var r: int
+	if Globals.amount_of_banning_lists == 0:
+		r = randi_range(1, 2)
+	else:
+		r = randi_range(1, 3)
 	if r == 1:
 		totaly_real_texture = generate_texture()
 		while texture == totaly_real_texture:
@@ -137,30 +141,27 @@ func getting_traitor():
 		baggage_x.append(randf_range(0, 1))
 		baggage_y.append(randf_range(0, 1))
 		baggage.append(generate_baggage_danger_texture())
-	if r == 3:
-		citizenship = Globals.banned_citizenships.pick_random()
-	if r == 4:
-		if Globals.banned_people:
-			name = Globals.banned_people.pick_random().name
-			surname = Globals.banned_people.pick_random().surname
-			texture = Globals.banned_people.pick_random().texture
-			totaly_real_texture = texture
-		else:
-			traitor = false
+	elif r == 3:
+		r = randi_range(1, Globals.amount_of_banning_lists)
+		var ban_lists = Globals.get_ban_lists()
+		for i_ban_list in range(len(ban_lists)):
+			if i_ban_list == (r - 1):
+				if ban_lists[i_ban_list] == 'banned_ages':
+					age = Globals.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_citizenship':
+					citizenship = Globals.ban[ban_lists[i_ban_list]].pick_random()
+				if ban_lists[i_ban_list] == 'banned_people':
+					var p = Globals.ban['banned_people'].pick_random()
+					name = p.name
+					surname = p.surname
+					texture = p.texture
+					totaly_real_texture = texture
+				if ban_lists[i_ban_list] == 'banned_baggage':
+					baggage.append(Globals.ban[ban_lists[i_ban_list]].pick_random())
+					baggage_x.append(randf_range(0, 1))
+					baggage_y.append(randf_range(0, 1))
+	else:
+		traitor = false
 
 			
-		#r = randi_range(1, Globals.amount_of_banning_lists)
-		#var ban_lists = Globals.get_ban_lists()
-		#for i_ban_list in range(len(ban_lists)):
-			#if i_ban_list == (r - 1):
-				#if ban_lists[i_ban_list] == 'banned_ages':
-					#age = Globals.ban[ban_lists[i_ban_list]].pick_random()
-				#if ban_lists[i_ban_list] == 'banned_citizenship':
-					#citizenship = Globals.ban[ban_lists[i_ban_list]].pick_random()
-				#if ban_lists[i_ban_list] == 'banned_names':
-					#name = Globals.ban[ban_lists[i_ban_list]].pick_random()
-				#if ban_lists[i_ban_list] == 'banned_surnames':
-					#surname = Globals.ban[ban_lists[i_ban_list]].pick_random()
-				#if ban_lists[i_ban_list] == 'banned_textures':
-					#texture = Globals.ban[ban_lists[i_ban_list]].pick_random()
-					#totaly_real_texture = Globals.ban[ban_lists[i_ban_list]].pick_random()
+		

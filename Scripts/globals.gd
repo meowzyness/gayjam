@@ -1,14 +1,6 @@
 extends Node
 
-var amount_of_banning_lists = 1
-
-var ban = {
-	"banned_ages": [],
-	"banned_citizenship": [],
-	"banned_names": [],
-	"banned_surnames": [],
-	"banned_textures": [load("res://Sprites/people/civ_f_001t.webp")]
-}
+var amount_of_banning_lists = 0
 
 var sexes = ["М", "Ж"]
 var first_names_rus_m = [
@@ -109,38 +101,47 @@ var last_names_western_f = [
 
 var citizenship_types = ["Трикарасье", "Новкарасье", "Чегория", "Стромыния", "Сокологора", "Теркастан", "Кашингтон", "Вернандт"]
 
-var banned_citizenships = [ ]
-var banned_people = []
+ # НЕ ДОБАВЛЯТЬ НИЧЕГО ВРУЧНУЮ, ТОЛЬКО ЧЕРЕЗ МЕТОДЫ
+var ban = {
+	"banned_ages": [],
+	"banned_citizenships": [],
+	"banned_people": [],
+	"banned_baggage": []
+}
+
 
 func _ready() -> void:
-	banned_citizenships.append(citizenship_types.pick_random())
-	banned_people.append(Personality.new())
+	add_ban(load('res://Sprites/baggage/scan_item3.png'), 'banned_baggage')
 
-#func update_ban_lists():
-	#var amount = 0
-	#for k in ban.keys():
-		#if len(ban[k]) > 0:
-			#amount += 1
-	#amount_of_banning_lists = amount
+
+
+func update_ban_lists():
+	var amount = 0
+	for k in ban.keys():
+		if len(ban[k]) > 0:
+			amount += 1
+	amount_of_banning_lists = amount
 #
 #
-#func get_ban_lists():
-	#var ban_list = []
-	#for k in ban.keys():
-		#if len(ban[k]) > 0:
-			#ban_list.append(k)
-	#return ban_list
+func get_ban_lists():
+	var ban_list = []
+	for k in ban.keys():
+		if len(ban[k]) > 0:
+			ban_list.append(k)
+	return ban_list
 #
 #
-#func add_ban(p_name, massive: Array):
-	#massive.append(p_name)
-	#update_ban_lists()
+func add_ban(p_name, key):
+	for k in ban:
+		if k == key:
+			ban[k].append(p_name)
+	update_ban_lists()
 #
 #
-#func del_ban(p_name, massive: Array):
-	#var _deleting_item
-	#for i in range(len(massive)):
-		#if massive[i] == p_name:
-			#_deleting_item = massive[i]
-	#massive.remove_at(_deleting_item)
-	#update_ban_lists()
+func del_ban(p_name, massive: Array):
+	var _deleting_item
+	for i in range(len(massive)):
+		if massive[i] == p_name:
+			_deleting_item = massive[i]
+	massive.remove_at(_deleting_item)
+	update_ban_lists()
