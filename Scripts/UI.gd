@@ -5,6 +5,7 @@ var target: Person
 var personality: Personality
 var balance: int = 0
 
+@export var lvl1: bool
 @export var scanner: Scanner
 @export var dossier: Dossier
 
@@ -122,6 +123,17 @@ func update_balance() -> void:
 		balance_label.modulate = Color(0.9, 0.3, 0.3)
 	else:
 		balance_label.modulate = Color.WHITE
+	
+	if balance <= -1000:
+		AudioManager.play_ui_sound("incorrect")
+		get_tree().change_scene_to_file("res://Scenes/gameover.tscn")
+	if balance >= 2500:
+		AudioManager.play_ui_sound("correct")
+		if lvl1:
+			get_tree().change_scene_to_file("res://Scenes/lvlup.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Scenes/finish.tscn")
+
 
 
 func _on_timer_timeout() -> void:

@@ -7,13 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://k1w036y3b5pa" path="res://Scenes/UI.tscn" id="5_y4dr7"]
 [ext_resource type="FontFile" uid="uid://bnrfw3kxim8ve" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="6_didp7"]
 [ext_resource type="Shader" uid="uid://dbgot2yxwhxn6" path="res://Scripts/shader.gdshader" id="7_2a60c"]
+[ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="7_4iphx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mya75"]
 shader = ExtResource("7_2a60c")
 shader_parameter/fisheye_strength = 0.010000000475
-shader_parameter/scanline_strength = 0.50000002375
-shader_parameter/noise_strength = 0.050000002375
-shader_parameter/vignette_strength = 0.70000003325
+shader_parameter/scanline_strength = 0.30000001425
+shader_parameter/noise_strength = 0.10000000475
+shader_parameter/vignette_strength = 0.2000000095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a60c"]
 bg_color = Color(0, 0, 0, 1)
@@ -31,6 +32,7 @@ font_size = 30
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=340385995]
 
 [node name="UI" parent="CanvasLayer" unique_id=1778935788 node_paths=PackedStringArray("status_label", "balance_label") instance=ExtResource("5_y4dr7")]
+lvl1 = true
 status_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label4")
 balance_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label")
 
@@ -59,7 +61,7 @@ texture = ExtResource("3_c5erv")
 centered = false
 
 [node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=638173762]
-position = Vector2(2000, 825)
+position = Vector2(2000, 785.3333)
 script = ExtResource("1_4hvuo")
 direction = Vector2(-1, 0)
 
@@ -108,6 +110,7 @@ offset_left = 1450.6667
 offset_top = 69.333336
 offset_right = 1889.3334
 offset_bottom = 114.66668
+theme_override_fonts/font = ExtResource("7_4iphx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 label_settings = SubResource("LabelSettings_mya75")
 horizontal_alignment = 1
@@ -121,6 +124,7 @@ offset_left = 1414.6667
 offset_top = 362.66666
 offset_right = 1853.3335
 offset_bottom = 408.00003
+theme_override_fonts/font = ExtResource("7_4iphx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 label_settings = SubResource("LabelSettings_mya75")
 horizontal_alignment = 1
@@ -136,6 +140,7 @@ offset_left = 97.333336
 offset_top = 66.66667
 offset_right = 535.99994
 offset_bottom = 112.00003
+theme_override_fonts/font = ExtResource("7_4iphx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 text = "SEP 11             18:47"
 label_settings = SubResource("LabelSettings_mya75")
@@ -149,6 +154,7 @@ offset_left = 89.333336
 offset_top = 972.0
 offset_right = 528.3333
 offset_bottom = 1017.33344
+theme_override_fonts/font = ExtResource("7_4iphx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 text = "AIRPORT_HALLWAY_CAMERA_01"
 label_settings = SubResource("LabelSettings_mya75")

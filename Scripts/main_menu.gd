@@ -2,15 +2,23 @@ extends Control
 
 func _ready() -> void:
 	AudioManager.play_music_infinity("menu")
-	AudioManager.play_music_infinity("game")
 
-func _on_start_button_pressed():
+func lvl1():
 	AudioManager.play_ui_sound("click")
-	get_tree().change_scene_to_file("res://Scenes/level2.tscn")
+	#AudioManager.play_music_infinity("game")
+	get_tree().change_scene_to_file("res://Scenes/level1.tscn")
 
-func _on_exit_button_pressed():
+func sound():
+	AudioManager.play_ui_sound("click")
+
+func quit():
 	get_tree().quit()
 
+func lvl2() -> void:
+	AudioManager.play_ui_sound("click")
+	AudioManager.play_music_infinity("2")
+	get_tree().change_scene_to_file("res://Scenes/level2.tscn")
 
-func sound() -> void:
-	AudioManager.play_ui_sound("click2")
+func menu() -> void:
+	#AudioManager.play_music_infinity("menu")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

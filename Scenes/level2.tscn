@@ -9,12 +9,12 @@
 [ext_resource type="FontFile" uid="uid://bnrfw3kxim8ve" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="7_vn460"]
 [ext_resource type="Texture2D" uid="uid://bk5qk3to28ndf" path="res://Sprites/lvl2/colonna.png" id="8_vn2uo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mya75"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mhlpv"]
 shader = ExtResource("6_mmf1u")
 shader_parameter/fisheye_strength = 0.010000000475
-shader_parameter/scanline_strength = 0.50000002375
-shader_parameter/noise_strength = 0.050000002375
-shader_parameter/vignette_strength = 0.70000003325
+shader_parameter/scanline_strength = 0.30000001425
+shader_parameter/noise_strength = 0.10000000475
+shader_parameter/vignette_strength = 0.2000000095
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a60c"]
 bg_color = Color(0, 0, 0, 1)
@@ -81,10 +81,10 @@ z_index = 2
 script = ExtResource("5_mtqcm")
 scan_origin = NodePath("../Camera2D")
 
-[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=106979656]
+[node name="ColorRect2" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=280551705]
 z_index = 1000
 z_as_relative = false
-material = SubResource("ShaderMaterial_mya75")
+material = SubResource("ShaderMaterial_mhlpv")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -121,10 +121,10 @@ autowrap_trim_flags = 128
 [node name="Label4" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1550541697]
 visible = false
 layout_mode = 0
-offset_left = 1414.6667
-offset_top = 362.66666
-offset_right = 1853.3335
-offset_bottom = 408.00003
+offset_left = 1442.6667
+offset_top = 664.0
+offset_right = 1881.3335
+offset_bottom = 709.3334
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 label_settings = SubResource("LabelSettings_mya75")
 horizontal_alignment = 1

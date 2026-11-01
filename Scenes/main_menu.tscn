@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://d2md3hxmlap85" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://43ohqe5enc7g" path="res://Sprites/ui/menu.webp" id="2_48xlc"]
 [ext_resource type="Texture2D" uid="uid://b3pvxvdijbmg7" path="res://Sprites/ui/button_normal.webp" id="3_btn_normal"]
-[ext_resource type="FontFile" uid="uid://c1fscdgiv16u" path="res://fonts/MixSerifCondenseRUSbyDumpyCats-Condense.ttf" id="3_n45e2"]
+[ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="3_n45e2"]
 [ext_resource type="Texture2D" uid="uid://4bg365oh0av7" path="res://Sprites/ui/button-hovered.webp" id="4_btn_hover"]
+[ext_resource type="Shader" uid="uid://dbgot2yxwhxn6" path="res://Scripts/shader.gdshader" id="6_opfnp"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mya75"]
 texture = ExtResource("3_btn_normal")
@@ -16,6 +17,13 @@ texture = ExtResource("4_btn_hover")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
 texture = ExtResource("3_btn_normal")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp0ys"]
+shader = ExtResource("6_opfnp")
+shader_parameter/fisheye_strength = 0.050000002375
+shader_parameter/scanline_strength = 0.0
+shader_parameter/noise_strength = 0.10000000475
+shader_parameter/vignette_strength = 0.10000000475
 
 [node name="MainMenu" type="Control" unique_id=1213897182]
 layout_mode = 3
@@ -64,14 +72,14 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_n45e2")
 theme_override_font_sizes/font_size = 100
-text = "Papers, Please 2"
+text = "Papers,
+Please 2"
 
 [node name="Subtitle" type="Label" parent="MarginContainer/HBoxContainer/LeftColumn" unique_id=650011105]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_fonts/font = ExtResource("3_n45e2")
 theme_override_font_sizes/font_size = 18
-text = "сами думайте как назовете этот шедевр"
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/LeftColumn" unique_id=385596917]
 custom_minimum_size = Vector2(0, 30)
@@ -101,7 +109,19 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "Выход"
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=895598845]
+z_index = 1000
+z_as_relative = false
+material = SubResource("ShaderMaterial_cp0ys")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="sound"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonStart" to="." method="lvl1"]
 [connection signal="mouse_entered" from="MarginContainer/HBoxContainer/LeftColumn/ButtonExit" to="." method="sound"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonExit" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/LeftColumn/ButtonExit" to="." method="quit"]

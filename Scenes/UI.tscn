@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b3wefoc1smlyd" path="res://Scripts/dossier.gd" id="2_hfhsn"]
 [ext_resource type="Script" uid="uid://b57bamvh2435v" path="res://Scripts/scanner.gd" id="2_nxvpl"]
 [ext_resource type="PackedScene" uid="uid://b1s254denct6h" path="res://Scenes/globals.tscn" id="2_xjg7p"]
+[ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="4_xjg7p"]
 [ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/ui/scaner.webp" id="5_48q88"]
 [ext_resource type="Texture2D" uid="uid://c6k71wqn2sjl6" path="res://Sprites/baggage/scan_suitcase.png" id="6_xjg7p"]
 
@@ -56,12 +57,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_2a60c")
 script = ExtResource("1_w371h")
-banned_person = ExtResource("2_xjg7p")
 scanner = NodePath("Scanner")
 dossier = NodePath("Dossier")
 button_inspect = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonInspect")
 button_arrest = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonArrest")
 banned_people = NodePath("Dossier/MarginContainer/VBoxContainer/HBoxContainer")
+banned_person = ExtResource("2_xjg7p")
 banned_citizenships = NodePath("Dossier/MarginContainer/VBoxContainer/Label")
 
 [node name="Dossier" type="Panel" parent="." unique_id=1840527199 node_paths=PackedStringArray("name_label", "age_label", "sex_label", "citizenship_label", "profile_pic")]
@@ -130,6 +131,7 @@ custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_xjg7p")
 theme_override_font_sizes/font_size = 24
 text = "Отправить на досмотр"
 
@@ -138,6 +140,7 @@ custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_xjg7p")
 theme_override_font_sizes/font_size = 24
 text = "Задержать"
 
@@ -156,6 +159,7 @@ theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1074667797]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 theme_override_font_sizes/font_size = 18
 text = "ДОСЬЕ"
 horizontal_alignment = 1
@@ -191,18 +195,22 @@ theme_override_constants/separation = 6
 
 [node name="NameLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=64476306]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "Имя: -"
 
 [node name="AgeLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=792735768]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "Возраст: -"
 
 [node name="SexLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=458550517]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "Пол: -"
 
 [node name="CitizenshipLabel" type="Label" parent="Dossier/MarginContainer/VBoxContainer/InfoList" unique_id=1829085584]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "Гражданство: -"
 
 [node name="HSeparator2" type="HSeparator" parent="Dossier/MarginContainer/VBoxContainer" unique_id=471265065]
@@ -210,10 +218,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=520768648]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "Запрещенные страны:  -"
 
 [node name="Label2" type="Label" parent="Dossier/MarginContainer/VBoxContainer" unique_id=1013151765]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_xjg7p")
 text = "
 
 

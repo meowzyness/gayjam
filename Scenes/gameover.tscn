@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://urcta82o8uq"]
+
+[ext_resource type="Script" uid="uid://d2md3hxmlap85" path="res://Scripts/main_menu.gd" id="1_bb3cs"]
+[ext_resource type="Texture2D" uid="uid://ce2rlsoivxgy5" path="res://Sprites/ui/Sprite-0001.webp" id="1_fg4p2"]
+[ext_resource type="Texture2D" uid="uid://cl1admlqna7wr" path="res://Sprites/ui/loose.webp" id="2_qpupn"]
+[ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="3_6kwjr"]
+[ext_resource type="Texture2D" uid="uid://b3pvxvdijbmg7" path="res://Sprites/ui/button_normal.webp" id="4_bb3cs"]
+[ext_resource type="Texture2D" uid="uid://4bg365oh0av7" path="res://Sprites/ui/button-hovered.webp" id="5_a57xw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qjy16"]
+texture = ExtResource("4_bb3cs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_26hfm"]
+texture = ExtResource("5_a57xw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vskwr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_opou1"]
+texture = ExtResource("4_bb3cs")
+
+[node name="Gameover" type="Control" unique_id=443408829]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bb3cs")
+
+[node name="Sprite0001" type="Sprite2D" parent="." unique_id=95260524]
+texture = ExtResource("1_fg4p2")
+centered = false
+
+[node name="Loose" type="Sprite2D" parent="." unique_id=459734612]
+position = Vector2(620, 717)
+scale = Vector2(2, 2)
+texture = ExtResource("2_qpupn")
+
+[node name="ButtonStart" type="Button" parent="." unique_id=179654764]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 1167.0
+offset_top = 448.0
+offset_right = 1556.0
+offset_bottom = 505.0
+focus_neighbor_bottom = NodePath("../ButtonExit")
+theme_override_fonts/font = ExtResource("3_6kwjr")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_qjy16")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_26hfm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_26hfm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vskwr")
+text = "Еще раз"
+
+[node name="ButtonExit" type="Button" parent="." unique_id=650629098]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 0
+offset_left = 1164.0
+offset_top = 537.0
+offset_right = 1566.0
+offset_bottom = 590.0
+focus_neighbor_top = NodePath("../ButtonStart")
+theme_override_fonts/font = ExtResource("3_6kwjr")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxTexture_opou1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_26hfm")
+theme_override_styles/hover = SubResource("StyleBoxTexture_26hfm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vskwr")
+text = "В меню"
+
+[connection signal="mouse_entered" from="ButtonStart" to="." method="sound"]
+[connection signal="pressed" from="ButtonStart" to="." method="lvl1"]
+[connection signal="mouse_entered" from="ButtonExit" to="." method="sound"]
+[connection signal="pressed" from="ButtonExit" to="." method="menu"]

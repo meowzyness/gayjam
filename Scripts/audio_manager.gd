@@ -5,7 +5,8 @@ extends Node
 
 var tracks = {
 	"menu": load("res://Sounds/MainMenuMusic.mp3"),
-	"game": preload("res://Sounds/pizdecRepv2.mp3")
+	"game": preload("res://Sounds/pizdecRepv2.mp3"),
+	"2": preload("res://Sounds/Main_poeben.mp3"),
 }
 
 var sounds = {
