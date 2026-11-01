@@ -160,8 +160,8 @@ func _on_timer_timeout() -> void:
 
 
 func generate_random_events():
-	await get_tree().create_timer(5.0).timeout
-	var r = randi_range(10, 11)
+	await get_tree().create_timer(60.0).timeout
+	var r = randi_range(1, 11)
 	if r == 1:
 		Globals.add_ban(randi_range(1, 14), 'banned_ages')
 		print(Globals.ban['banned_ages'])

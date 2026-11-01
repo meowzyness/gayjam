@@ -131,7 +131,7 @@ func getting_traitor():
 	if Globals.amount_of_banning_lists == 0:
 		r = randi_range(1, 2)
 	else:
-		r = randi_range(3, 3)
+		r = randi_range(1, 3)
 	if r == 1:
 		totaly_real_texture = generate_texture()
 		while texture == totaly_real_texture:
@@ -171,8 +171,8 @@ func getting_traitor():
 func update():
 	if citizenship in Globals.ban['banned_citizenships']:
 		traitor = true
-		sussyness = randi_range(7, 10) / 10.0
+		sussyness = randi_range(5, 9) / 10.0
 	for b in baggage:
 		if b in Globals.ban['banned_baggage']:
 			traitor = true
-			sussyness = randi_range(7, 10) / 10.0
+			sussyness = randi_range(5, 9) / 10.0
