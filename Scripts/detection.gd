@@ -119,7 +119,12 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
+	var ui = get_tree().root.find_child("UI", true, false)
 	for i in tracked_boxes.keys():
+		if not tracked_targets.has(i) or not is_instance_valid(tracked_targets[i]):
+			continue
+		if not tracked_targets[i].personality:
+			continue
 		var rect = tracked_boxes[i]
 		var label := "%0.2f" % tracked_targets[i].personality.sussyness
 		var font := ThemeDB.fallback_font
@@ -137,7 +142,7 @@ func _draw() -> void:
 		if tracked_targets[i].hovered == true:
 			color = color.darkened(0.1)
 			label = tracked_targets[i].personality.name
-		if tracked_targets[i] == $/root/Node2D/CanvasLayer/UI.target:
+		if ui and ui.target and tracked_targets[i] == ui.target:
 			color = Color.LIGHT_BLUE
 			label = tracked_targets[i].personality.name
 			width = 4.0

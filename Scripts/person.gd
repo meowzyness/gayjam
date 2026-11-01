@@ -29,8 +29,9 @@ func _ready():
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		if has_node("/root/Node2D/CanvasLayer/UI"):
-			$/root/Node2D/CanvasLayer/UI.update(self)
+		var ui = get_tree().root.find_child("UI", true, false)
+		if ui:
+			ui.update(self)
 
 func _on_mouse_entered() -> void:
 	hovered = true
@@ -61,8 +62,10 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * 50.0
 
 	if position.x < -2100:
-		if has_node("/root/Node2D/CanvasLayer/UI") and is_walker:
-			$/root/Node2D/CanvasLayer/UI.skipped(self)
+		if is_walker:
+			var ui = get_tree().root.find_child("UI", true, false)
+			if ui:
+				ui.skipped(self)
 		queue_free()
 	position += velocity * delta
 	sprite.position.y = offset_y

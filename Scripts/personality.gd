@@ -16,6 +16,45 @@ class_name Personality
 @export var baggage_y = []
 @export var having_danger = false
 
+const PEOPLE_M = [
+	"res://Sprites/people/civ_m_001.webp",
+	"res://Sprites/people/civ_m_002.webp",
+	"res://Sprites/people/civ_m_003.webp",
+	"res://Sprites/people/civ_m_004.webp",
+	"res://Sprites/people/civ_m_006.webp",
+	"res://Sprites/people/civ_m_007.webp",
+	"res://Sprites/people/civ_m_008.webp",
+	"res://Sprites/people/civ_m_009.webp",
+	"res://Sprites/people/civ_m_010.webp",
+	"res://Sprites/people/civ_m_012.webp",
+	"res://Sprites/people/civ_m_0013.webp"
+]
+
+const PEOPLE_F = [
+	"res://Sprites/people/civ_f_001t.webp",
+	"res://Sprites/people/civ_f_002t.webp",
+	"res://Sprites/people/civ_f_003.webp",
+	"res://Sprites/people/civ_f_004.webp",
+	"res://Sprites/people/civ_f_005.webp",
+	"res://Sprites/people/civ_f_006.webp",
+	"res://Sprites/people/civ_f_007.webp",
+	"res://Sprites/people/civ_f_008.webp"
+]
+
+const BAGGAGE_ITEMS = [
+	"res://Sprites/baggage/item_E1.png",
+	"res://Sprites/baggage/item_E3.png",
+	"res://Sprites/baggage/scan_item1.png",
+	"res://Sprites/baggage/scan_item3.png",
+	"res://Sprites/baggage/scan_item4.png",
+	"res://Sprites/baggage/scan_item5.png",
+	"res://Sprites/baggage/scan_item6.png"
+]
+
+const BAGGAGE_DANGER = [
+	"res://Sprites/baggage/scan_danger.png",
+	"res://Sprites/baggage/scan_danger1.png"
+]
 
 func is_guilty() -> bool:
 	return traitor
@@ -26,8 +65,10 @@ func get_arrest_reward() -> int:
 func _init():
 	sex = Globals.sexes.pick_random()
 	citizenship = Globals.citizenship_types.pick_random()
-	while citizenship in Globals.ban['banned_citizenships']:
+	var cit_attempts = 0
+	while citizenship in Globals.ban['banned_citizenships'] and cit_attempts < 50:
 		citizenship = Globals.citizenship_types.pick_random()
+		cit_attempts += 1
 
 	randomize_name()
 	generate_age()
@@ -35,9 +76,11 @@ func _init():
 	totaly_real_texture = texture
 
 	var amount_of_baggage = randi_range(3, 5)
-	while amount_of_baggage >= 0:
+	var bag_attempts = 0
+	while amount_of_baggage >= 0 and bag_attempts < 30:
+		bag_attempts += 1
 		var b = generate_baggage_texture()
-		if b not in Globals.ban['banned_baggage']:
+		if b and b not in Globals.ban['banned_baggage']:
 			baggage_x.append(randf_range(0, 1))
 			baggage_y.append(randf_range(0, 1))
 			baggage.append(b)
@@ -54,37 +97,16 @@ func _init():
 
 
 func generate_texture():
-	var files = DirAccess.get_files_at("res://Sprites/people/")
-	var textures = []
-	for file in files:
-		if file.ends_with(".webp"):
-			if (file.contains("m") and sex == "М") or (file.contains("f") and sex == "Ж"):
-				textures.append(file)
-
-	if textures.size() > 0:
-		return load("res://Sprites/people/" + textures.pick_random())
+	var list = PEOPLE_M if sex == "М" else PEOPLE_F
+	return load(list.pick_random())
 
 
 func generate_baggage_texture():
-	var files = DirAccess.get_files_at("res://Sprites/baggage/")
-	var textures = []
-	for file in files:
-		if file.ends_with(".png") and file.contains("item"):
-			textures.append(file)
-
-	if textures.size() > 0:
-		return load("res://Sprites/baggage/" + textures.pick_random())
+	return load(BAGGAGE_ITEMS.pick_random())
 
 
 func generate_baggage_danger_texture():
-	var files = DirAccess.get_files_at("res://Sprites/baggage/")
-	var textures = []
-	for file in files:
-		if file.ends_with(".png") and file.contains("danger"):
-			textures.append(file)
-
-	if textures.size() > 0:
-		return load("res://Sprites/baggage/" + textures.pick_random())
+	return load(BAGGAGE_DANGER.pick_random())
 
 
 func generate_age():
@@ -134,8 +156,10 @@ func getting_traitor():
 		r = randi_range(3, 3)
 	if r == 1:
 		totaly_real_texture = generate_texture()
-		while texture == totaly_real_texture:
+		var attempts = 0
+		while texture == totaly_real_texture and attempts < 20:
 			totaly_real_texture = generate_texture()
+			attempts += 1
 	elif r == 2:
 		having_danger = true
 		baggage_x.append(randf_range(0, 1))
