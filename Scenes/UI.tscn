@@ -7,6 +7,10 @@
 [ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="4_xjg7p"]
 [ext_resource type="Texture2D" uid="uid://bj3umpp8iso3e" path="res://Sprites/ui/scaner.webp" id="5_48q88"]
 [ext_resource type="Texture2D" uid="uid://c6k71wqn2sjl6" path="res://Sprites/baggage/scan_suitcase.png" id="6_xjg7p"]
+[ext_resource type="FontFile" uid="uid://c1fscdgiv16u" path="res://fonts/MixSerifCondenseRUSbyDumpyCats-Condense.ttf" id="7_mixserif"]
+[ext_resource type="Texture2D" uid="uid://b3pvxvdijbmg7" path="res://Sprites/ui/button_normal.webp" id="8_btn_normal"]
+[ext_resource type="Texture2D" uid="uid://bxrivwawk6fml" path="res://Sprites/ui/button_hovered.webp" id="9_btn_hover"]
+[ext_resource type="Texture2D" uid="uid://dsgmxg1mpsq8w" path="res://Sprites/ui/button_pressed.webp" id="10_btn_press"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjg7p"]
 content_margin_left = 0.0
@@ -37,6 +41,18 @@ corner_radius_bottom_left = 6
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wvm1h"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_white"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.18, 0.18, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg6lk"]
 bg_color = Color(0.18, 0.18, 0.22, 1)
 corner_radius_top_left = 6
@@ -44,10 +60,21 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("8_btn_normal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("9_btn_hover")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("10_btn_press")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn_focus"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wunin"]
 size = Vector2(658.45685, 691.5326)
 
-[node name="UI" type="Control" unique_id=1778935788 node_paths=PackedStringArray("scanner", "dossier", "button_inspect", "button_arrest", "banned_people", "banned_citizenships")]
+[node name="UI" type="Control" unique_id=1778935788 node_paths=PackedStringArray("scanner", "dossier", "button_inspect", "button_arrest", "button_exit", "banned_people", "banned_citizenships")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,7 +87,8 @@ script = ExtResource("1_w371h")
 scanner = NodePath("Scanner")
 dossier = NodePath("Dossier")
 button_inspect = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonInspect")
-button_arrest = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonArrest")
+button_arrest = NodePath("Scanner/HBoxContainer/RightPanel/MarginContainer/ButtonArrest")
+button_exit = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonExit")
 banned_people = NodePath("Dossier/MarginContainer/VBoxContainer/HBoxContainer")
 banned_person = ExtResource("2_xjg7p")
 banned_citizenships = NodePath("Dossier/MarginContainer/VBoxContainer/Label")
@@ -135,14 +163,19 @@ theme_override_fonts/font = ExtResource("4_xjg7p")
 theme_override_font_sizes/font_size = 24
 text = "Отправить на досмотр"
 
-[node name="ButtonArrest" type="Button" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=29198869]
+[node name="ButtonExit" type="Button" parent="Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox" unique_id=357785942]
 custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_fonts/font = ExtResource("4_xjg7p")
-theme_override_font_sizes/font_size = 24
-text = "Задержать"
+
+theme_override_fonts/font = ExtResource("7_mixserif")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_btn_focus")
+text = "Выйти"
 
 [node name="MarginContainer" type="MarginContainer" parent="Dossier" unique_id=2103945155]
 layout_mode = 0
@@ -258,36 +291,14 @@ offset_bottom = 270.0
 theme_override_constants/separation = 6
 
 [node name="ScannerPanel" type="PanelContainer" parent="Scanner/HBoxContainer" unique_id=1154792316]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1440366374]
-layout_mode = 2
-texture = SubResource("CanvasTexture_wvm1h")
-
-[node name="LuggageBox" type="Panel" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1899709214]
-clip_children = 1
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_mg6lk")
-
-[node name="TextureRect" type="TextureRect" parent="Scanner/HBoxContainer/ScannerPanel/LuggageBox" unique_id=1860292355]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1053.0
-offset_top = 37.0
-offset_right = 1.0
-offset_bottom = 2.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_48q88")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_white")
 
 [node name="SpawnZone" type="Area2D" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=1265178941]
-position = Vector2(590, 118)
+position = Vector2(358, 120)
 scale = Vector2(0.5, 0.5)
 
 [node name="Suitcase" type="Sprite2D" parent="Scanner/HBoxContainer/ScannerPanel/SpawnZone" unique_id=91878089]
@@ -298,8 +309,32 @@ position = Vector2(-0.49999237, 61.5)
 scale = Vector2(0.9248898, 0.61457705)
 shape = SubResource("RectangleShape2D_wunin")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Scanner/HBoxContainer/ScannerPanel" unique_id=906694632]
+[node name="RightPanel" type="PanelContainer" parent="Scanner/HBoxContainer" unique_id=1899709214]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_mg6lk")
+
+[node name="TextureRect" type="TextureRect" parent="Scanner/HBoxContainer/RightPanel" unique_id=1860292355]
+layout_mode = 2
+texture = ExtResource("5_48q88")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Scanner/HBoxContainer/RightPanel" unique_id=191028374]
+layout_mode = 2
+theme_override_constants/margin_bottom = 35
+
+[node name="ButtonArrest" type="Button" parent="Scanner/HBoxContainer/RightPanel/MarginContainer" unique_id=29198869]
+custom_minimum_size = Vector2(300, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-alignment = 1
+theme_override_fonts/font = ExtResource("7_mixserif")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_btn_focus")
+text = "Задержать"

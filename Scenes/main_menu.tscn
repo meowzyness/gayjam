@@ -3,20 +3,21 @@
 [ext_resource type="Script" uid="uid://d2md3hxmlap85" path="res://Scripts/main_menu.gd" id="1_28flt"]
 [ext_resource type="Texture2D" uid="uid://43ohqe5enc7g" path="res://Sprites/ui/menu.webp" id="2_48xlc"]
 [ext_resource type="Texture2D" uid="uid://b3pvxvdijbmg7" path="res://Sprites/ui/button_normal.webp" id="3_btn_normal"]
-[ext_resource type="FontFile" uid="uid://cj5q6x4sagjxc" path="res://fonts/vcrosdmonorusbydaymarius.ttf" id="3_n45e2"]
-[ext_resource type="Texture2D" uid="uid://4bg365oh0av7" path="res://Sprites/ui/button-hovered.webp" id="4_btn_hover"]
-[ext_resource type="Shader" uid="uid://dbgot2yxwhxn6" path="res://Scripts/shader.gdshader" id="6_opfnp"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mya75"]
+[ext_resource type="FontFile" uid="uid://c1fscdgiv16u" path="res://fonts/MixSerifCondenseRUSbyDumpyCats-Condense.ttf" id="3_n45e2"]
+[ext_resource type="Texture2D" uid="uid://bxrivwawk6fml" path="res://Sprites/ui/button_hovered.webp" id="4_btn_hover"]
+[ext_resource type="Texture2D" uid="uid://dsgmxg1mpsq8w" path="res://Sprites/ui/button_pressed.webp" id="5_btn_press"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
 texture = ExtResource("3_btn_normal")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hover"]
 texture = ExtResource("4_btn_hover")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pressed"]
+texture = ExtResource("5_btn_press")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_normal"]
-texture = ExtResource("3_btn_normal")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cp0ys"]
 shader = ExtResource("6_opfnp")
@@ -91,8 +92,8 @@ layout_mode = 2
 focus_neighbor_bottom = NodePath("../ButtonExit")
 theme_override_fonts/font = ExtResource("3_n45e2")
 theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxTexture_mya75")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "Начать"
@@ -104,7 +105,7 @@ focus_neighbor_top = NodePath("../ButtonStart")
 theme_override_fonts/font = ExtResource("3_n45e2")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxTexture_normal")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "Выход"

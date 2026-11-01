@@ -11,6 +11,7 @@ var balance: int = 0
 
 @export var button_inspect: Button
 @export var button_arrest: Button
+@export var button_exit: Button
 @export var status_label: Label
 @export var balance_label: Label
 
@@ -20,12 +21,24 @@ var balance: int = 0
 
 func _ready() -> void:
 	balance = 0
-	scanner = get_tree().root.find_child("Scanner", true, false)
-	generate_random_events()
-	
-	button_arrest.pressed.connect(_on_arrest_pressed)
-	button_inspect.pressed.connect(_on_inspect_pressed)
+scanner = get_tree().root.find_child("Scanner", true, false)
+
+	if button_arrest:
+		button_arrest.pressed.connect(_on_arrest_pressed)
+		button_arrest.mouse_entered.connect(_on_button_hover)
+	if button_inspect:
+		button_inspect.pressed.connect(_on_inspect_pressed)
+	if button_exit:
+		button_exit.pressed.connect(_on_exit_pressed)
+		button_exit.mouse_entered.connect(_on_button_hover)
 	update(null)
+
+func _on_button_hover() -> void:
+	AudioManager.play_ui_sound("click2")
+
+func _on_exit_pressed() -> void:
+	AudioManager.play_ui_sound("click")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.keycode == KEY_ESCAPE:
@@ -38,14 +51,14 @@ func _unhandled_input(event):
 func update(t: Person):
 	if scanner:
 		scanner.update(t)
-		
+
 	if dossier:
 		dossier.update(t)
 
 	if t:
 		target = t
 		personality = t.personality
-	
+
 	while Globals.ban['banned_people'].size() > banned_people.get_children().size():
 		banned_people.add_child(banned_person.instantiate())
 	while Globals.ban['banned_people'].size() < banned_people.get_children().size():
@@ -85,7 +98,7 @@ func _on_arrest_pressed() -> void:
 	var reward: int = target.personality.get_arrest_reward()
 	balance += reward
 	update_balance()
-	
+
 	var guilty: bool = target.personality.is_guilty()
 
 	if guilty:
@@ -100,7 +113,7 @@ func _on_arrest_pressed() -> void:
 		status_label.visible = true
 		status_label.get_child(0).start()
 		AudioManager.play_ui_sound("incorrect")
-		
+
 
 	for p in Globals.ban['banned_people']:
 		if target.personality.name == p.name and target.personality.surname == p.surname and target.personality.texture == p.texture:
@@ -128,7 +141,7 @@ func update_balance() -> void:
 		balance_label.modulate = Color(0.9, 0.3, 0.3)
 	else:
 		balance_label.modulate = Color.WHITE
-	
+
 	if balance <= -1000:
 		AudioManager.play_ui_sound("incorrect")
 		get_tree().change_scene_to_file("res://Scenes/gameover.tscn")

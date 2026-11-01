@@ -118,12 +118,11 @@ vertical_alignment = 1
 autowrap_trim_flags = 128
 
 [node name="Label4" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1550541697]
-visible = false
 layout_mode = 0
-offset_left = 1414.6667
-offset_top = 362.66666
-offset_right = 1853.3335
-offset_bottom = 408.00003
+offset_left = 94.66675
+offset_top = 249.33331
+offset_right = 533.3335
+offset_bottom = 294.6667
 theme_override_fonts/font = ExtResource("7_4iphx")
 theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
 label_settings = SubResource("LabelSettings_mya75")
@@ -132,6 +131,22 @@ vertical_alignment = 1
 autowrap_trim_flags = 128
 
 [node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4" unique_id=884701006]
+wait_time = 5.0
+
+[node name="Label5" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=681853215]
+layout_mode = 0
+offset_left = 94.666664
+offset_top = 322.6667
+offset_right = 533.33344
+offset_bottom = 368.00006
+theme_override_fonts/font = ExtResource("7_4iphx")
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CanvasLayer/Control/Label5" unique_id=1186004711]
 wait_time = 5.0
 
 [node name="Label2" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1306035782]
@@ -164,3 +179,4 @@ autowrap_trim_flags = 128
 
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4/Timer" to="CanvasLayer/UI" method="_on_timer_timeout"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/CanvasLayer/Control/Label5/Timer" to="CanvasLayer/UI" method="_on_timer_timeout"]
