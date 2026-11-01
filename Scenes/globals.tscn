@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b1s254denct6h"]
+
+[ext_resource type="Texture2D" uid="uid://dmfmm634spe54" path="res://Sprites/people/civ_m_003.webp" id="1_l845i"]
+
+[node name="Banned" type="Control" unique_id=1062954810]
+custom_minimum_size = Vector2(130, 200)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=6906329]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_l845i")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1150194265]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 128.0
+offset_bottom = 179.0
+text = "я лох"
+horizontal_alignment = 1

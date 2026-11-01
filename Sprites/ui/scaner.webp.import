@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj3umpp8iso3e"
-path="res://.godot/imported/scaner.webp-ffbd6a3c0241cf7b026514bc6a05ae4a.ctex"
+path="res://.godot/imported/scaner.webp-2287075efb729d69a31175d0daa1d8b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/scaner.webp"
-dest_files=["res://.godot/imported/scaner.webp-ffbd6a3c0241cf7b026514bc6a05ae4a.ctex"]
+source_file="res://Sprites/ui/scaner.webp"
+dest_files=["res://.godot/imported/scaner.webp-2287075efb729d69a31175d0daa1d8b5.ctex"]
 
 [params]
 

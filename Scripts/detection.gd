@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	var targets := get_tree().get_nodes_in_group("detectable")
 
 	for target in targets:
-		if not target is Area2D:
+		if not target is Person:
 			continue
 
 		var id: int = target.get_instance_id()

@@ -4,12 +4,13 @@ extends Node
 @onready var ui_sound: AudioStreamPlayer = $UiSound
 
 var tracks = {
-	"menu": load("res://Music/MainMenuMusic.mp3"),
-	"game": preload("res://Music/pizdecRepv2.mp3")
+	"menu": load("res://Sounds/MainMenuMusic.mp3"),
+	"game": preload("res://Sounds/pizdecRepv2.mp3")
 }
 
 var sounds = {
-	"click": preload("res://Sounds/Soundpad_clickV2.mp3"),
+	"click": preload("res://Sounds/Soundpad_click.mp3"),
+	"click2": preload("res://Sounds/Soundpad_clickV2.mp3"),
 	"correct": preload("res://Sounds/Soundpad_correct.mp3"),
 	"incorrect": preload("res://Sounds/Soundpad_incorrect.mp3"),
 	"detected": preload("res://Sounds/Soundpad_detectorV1.mp3"),

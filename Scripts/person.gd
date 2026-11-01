@@ -2,7 +2,7 @@ extends Area2D
 class_name Person
 
 var time: float = 0.0
-@export var is_walker: bool = randi_range(0, 1)
+@export var is_walker: bool = not randi_range(0, 4)
 @export var direction: Vector2 = Vector2.LEFT
 @export var speed: float = randf_range(70, 120)
 var personality: Personality
@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	if !is_walker:
 		z_index = 0
-		sprite.modulate = "#555555"
+		sprite.modulate = "#999999"
 		$CollisionShape2D.disabled = true;
 		remove_from_group("detectable")
 	else:
@@ -60,8 +60,7 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * 50.0
 
 	if position.x < -2100:
-		if has_node("/root/Node2D/CanvasLayer/UI"):
+		if has_node("/root/Node2D/CanvasLayer/UI") and is_walker:
 			$/root/Node2D/CanvasLayer/UI.skipped(self)
-	
 		queue_free()
 	position += velocity * delta

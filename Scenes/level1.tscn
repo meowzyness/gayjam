@@ -5,12 +5,34 @@
 [ext_resource type="Script" uid="uid://c62gdbyvacrru" path="res://Scripts/detection.gd" id="3_lyd6k"]
 [ext_resource type="Texture2D" uid="uid://byrpgbdt2betg" path="res://Sprites/travalator.webp" id="3_y4dr7"]
 [ext_resource type="PackedScene" uid="uid://k1w036y3b5pa" path="res://Scenes/UI.tscn" id="5_y4dr7"]
+[ext_resource type="FontFile" uid="uid://bnrfw3kxim8ve" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="6_didp7"]
+[ext_resource type="Shader" uid="uid://dbgot2yxwhxn6" path="res://Scripts/shader.gdshader" id="7_2a60c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mya75"]
+shader = ExtResource("7_2a60c")
+shader_parameter/fisheye_strength = 0.010000000475
+shader_parameter/scanline_strength = 0.50000002375
+shader_parameter/noise_strength = 0.050000002375
+shader_parameter/vignette_strength = 0.70000003325
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a60c"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_mya75"]
+font = ExtResource("6_didp7")
+font_size = 30
 
 [node name="Node2D" type="Node2D" unique_id=1976342410]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=340385995]
 
-[node name="UI" parent="CanvasLayer" unique_id=1778935788 instance=ExtResource("5_y4dr7")]
+[node name="UI" parent="CanvasLayer" unique_id=1778935788 node_paths=PackedStringArray("status_label", "balance_label") instance=ExtResource("5_y4dr7")]
+status_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label4")
+balance_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1865536499]
 anchors_preset = 15
@@ -54,4 +76,84 @@ z_index = 2
 script = ExtResource("3_lyd6k")
 scan_origin = NodePath("../Camera2D")
 
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=106979656]
+z_index = 1000
+z_as_relative = false
+material = SubResource("ShaderMaterial_mya75")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1926620516]
+layer = 2000
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/CanvasLayer" unique_id=1198294073]
+z_index = 2000
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1610842]
+layout_mode = 0
+offset_left = 1450.6667
+offset_top = 69.333336
+offset_right = 1889.3334
+offset_bottom = 114.66668
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Label4" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1550541697]
+visible = false
+layout_mode = 0
+offset_left = 1414.6667
+offset_top = 362.66666
+offset_right = 1853.3335
+offset_bottom = 408.00003
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4" unique_id=884701006]
+wait_time = 5.0
+
+[node name="Label2" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1306035782]
+layout_mode = 0
+offset_left = 97.333336
+offset_top = 66.66667
+offset_right = 535.99994
+offset_bottom = 112.00003
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+text = "SEP 11             18:47"
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Label3" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=621617518]
+layout_mode = 0
+offset_left = 89.333336
+offset_top = 972.0
+offset_right = 528.3333
+offset_bottom = 1017.33344
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+text = "AIRPORT_HALLWAY_CAMERA_01"
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
 [connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4/Timer" to="CanvasLayer/UI" method="_on_timer_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qaayc5m0yu6y"
-path="res://.godot/imported/action_button_hovered.webp-b2fab8aba2fd5755ff6a98a56c3eee13.ctex"
+uid="uid://b3pvxvdijbmg7"
+path="res://.godot/imported/button_normal.webp-7af8fc8887de57d6189a81f77917b9a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/action_button_hovered.webp"
-dest_files=["res://.godot/imported/action_button_hovered.webp-b2fab8aba2fd5755ff6a98a56c3eee13.ctex"]
+source_file="res://Sprites/ui/button_normal.webp"
+dest_files=["res://.godot/imported/button_normal.webp-7af8fc8887de57d6189a81f77917b9a6.ctex"]
 
 [params]
 
