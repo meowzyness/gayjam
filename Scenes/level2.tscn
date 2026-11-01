@@ -30,7 +30,7 @@ font_size = 30
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
 size = Vector2(106.46765, 732.33826)
 
-[node name="Node2D" type="Node2D" unique_id=1976342410]
+[node name="Node2D2" type="Node2D" unique_id=1976342410]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=340385995]
 

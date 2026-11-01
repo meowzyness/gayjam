@@ -118,6 +118,7 @@ vertical_alignment = 1
 autowrap_trim_flags = 128
 
 [node name="Label4" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1550541697]
+visible = false
 layout_mode = 0
 offset_left = 94.66675
 offset_top = 249.33331
@@ -134,6 +135,7 @@ autowrap_trim_flags = 128
 wait_time = 5.0
 
 [node name="Label5" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=681853215]
+visible = false
 layout_mode = 0
 offset_left = 94.666664
 offset_top = 322.6667
