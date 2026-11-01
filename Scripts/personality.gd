@@ -131,7 +131,7 @@ func getting_traitor():
 	if Globals.amount_of_banning_lists == 0:
 		r = randi_range(1, 2)
 	else:
-		r = randi_range(1, 3)
+		r = randi_range(3, 3)
 	if r == 1:
 		totaly_real_texture = generate_texture()
 		while texture == totaly_real_texture:
@@ -148,18 +148,22 @@ func getting_traitor():
 			if i_ban_list == (r - 1):
 				if ban_lists[i_ban_list] == 'banned_ages':
 					age = Globals.ban[ban_lists[i_ban_list]].pick_random()
-				if ban_lists[i_ban_list] == 'banned_citizenship':
+					print('Преступник появился с возрастом ', age)
+				if ban_lists[i_ban_list] == 'banned_citizenships':
 					citizenship = Globals.ban[ban_lists[i_ban_list]].pick_random()
+					print('Преступник появился с гражданством ', citizenship)
 				if ban_lists[i_ban_list] == 'banned_people':
 					var p = Globals.ban['banned_people'].pick_random()
 					name = p.name
 					surname = p.surname
 					texture = p.texture
 					totaly_real_texture = texture
+					print('Преступник появился с именем ', name)
 				if ban_lists[i_ban_list] == 'banned_baggage':
 					baggage.append(Globals.ban[ban_lists[i_ban_list]].pick_random())
 					baggage_x.append(randf_range(0, 1))
 					baggage_y.append(randf_range(0, 1))
+					print('Преступник появился с багажом ', baggage[-1])
 	else:
 		traitor = false
 

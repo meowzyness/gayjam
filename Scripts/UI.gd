@@ -20,6 +20,7 @@ var balance: int = 0
 func _ready() -> void:
 	balance = 0
 	scanner = get_tree().root.find_child("Scanner", true, false)
+	generate_random_events()
 	
 	button_arrest.pressed.connect(_on_arrest_pressed)
 	button_inspect.pressed.connect(_on_inspect_pressed)
@@ -53,7 +54,11 @@ func update(t: Person):
 		if len(Globals.ban['banned_people']) > 0:
 			banned_people.get_children()[i].get_child(0).texture = Globals.ban['banned_people'][i].texture
 			banned_people.get_children()[i].get_child(1).text = Globals.ban['banned_people'][i].name + " " + Globals.ban['banned_people'][i].surname
-	banned_citizenships.text = "Запрещенные страны: " + str(Globals.ban['banned_citizenships'])
+	var banned_counries = []
+	for country in Globals.ban['banned_citizenships']:
+		if country in Globals.citizenship_types:
+			banned_counries.append(country)
+	banned_citizenships.text = "Запрещенные страны: " + str(banned_counries)
 
 func skipped(t: Person):
 	var guilty: bool = t.personality.is_guilty()
@@ -126,3 +131,78 @@ func update_balance() -> void:
 
 func _on_timer_timeout() -> void:
 	status_label.visible = false
+
+
+func generate_random_events():
+	await get_tree().create_timer(10.0).timeout
+	var r = randi_range(1, 11)
+	if r == 1:
+		Globals.add_ban(randi_range(1, 14), 'banned_ages')
+		print(Globals.ban['banned_ages'])
+	if r == 2:
+		Globals.add_ban(randi_range(100, 1000), 'banned_ages')
+		print(Globals.ban['banned_ages'])
+	if r == 3 and 'ЗЕБЕСТКАНТРИ' not in Globals.ban['banned_citizenships']:
+		Globals.add_ban('ЗЕБЕСТКАНТРИ', 'banned_citizenships')
+		print(Globals.ban['banned_citizenships'])
+	if r == 4 and 'гойдана' not in Globals.ban['banned_citizenships']:
+		Globals.add_ban('гойдана', 'banned_citizenships')
+		print(Globals.ban['banned_citizenships'])
+	if r == 5 and 'орбистан' not in Globals.ban['banned_citizenships']:
+		Globals.add_ban('орбистан', 'banned_citizenships')
+		print(Globals.ban['banned_citizenships'])
+	if r == 6:
+		var c = Globals.citizenship_types.pick_random()
+		Globals.add_ban(c, 'banned_citizenships')
+		var text = 'теперь запрещен въезд гражданам из страны ' + c
+		status_label.text = text
+		status_label.modulate = Color(0.9, 0.3, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(text)
+		print(Globals.ban['banned_citizenships'])
+	if r == 7 and len(Globals.ban['banned_citizenships']) > 0:
+		var c = Globals.ban['banned_citizenships'].pick_random()
+		Globals.del_ban(c, 'banned_citizenships')
+		var text = 'теперь разрешён въезд гражданам из страны ' + c
+		status_label.text = text
+		status_label.modulate = Color(0.3, 0.9, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(text)
+		print(Globals.ban['banned_citizenships'])
+	if r == 8 and len(Globals.ban['banned_people']) == 0:
+		var p = Personality.new()
+		Globals.add_ban(p, 'banned_people')
+		var text = 'необходимо задержать преступника ' + p.name + ' ' + p.surname
+		status_label.text = text
+		status_label.modulate = Color(0.9, 0.3, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(text)
+		print(Globals.ban['banned_people'])
+	if r == 9 and len(Globals.ban['banned_people']) != 0:
+		var p = Globals.ban['banned_people'].pick_random()
+		Globals.del_ban(p, 'banned_people')
+		var text = 'задержен преступник: ' + p.name + ' ' + p.surname
+		status_label.text = text
+		status_label.modulate = Color(0.3, 0.9, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(text)
+		print(Globals.ban['banned_people'])
+	if r == 10 and len(Globals.ban['banned_baggage']) == 0:
+		Globals.add_ban(load('res://Sprites/baggage/scan_item1.png'), 'banned_baggage')
+		status_label.text = 'теперь запрещено перевозить тыкву в багаже'
+		status_label.modulate = Color(0.9, 0.3, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(Globals.ban['banned_baggage'])
+	if r == 11 and len(Globals.ban['banned_baggage']) != 0:
+		Globals.del_ban(load('res://Sprites/baggage/scan_item1.png'), 'banned_baggage')
+		status_label.text = 'теперь разрешено перевозить тыкву в багаже'
+		status_label.modulate = Color(0.3, 0.9, 0.3)
+		status_label.visible = true
+		status_label.get_child(0).start()
+		print(Globals.ban['banned_baggage'])
+	generate_random_events()

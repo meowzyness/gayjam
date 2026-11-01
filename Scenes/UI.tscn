@@ -56,12 +56,12 @@ grow_vertical = 2
 mouse_filter = 2
 theme = SubResource("Theme_2a60c")
 script = ExtResource("1_w371h")
-banned_person = ExtResource("2_xjg7p")
 scanner = NodePath("Scanner")
 dossier = NodePath("Dossier")
 button_inspect = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonInspect")
 button_arrest = NodePath("Dossier/Actions/ActionsPanel/ActionsMargin/ActionsVBox/MarginContainer/ButtonsVBox/ButtonArrest")
 banned_people = NodePath("Dossier/MarginContainer/VBoxContainer/HBoxContainer")
+banned_person = ExtResource("2_xjg7p")
 banned_citizenships = NodePath("Dossier/MarginContainer/VBoxContainer/Label")
 
 [node name="Dossier" type="Panel" parent="." unique_id=1840527199 node_paths=PackedStringArray("name_label", "age_label", "sex_label", "citizenship_label", "profile_pic")]

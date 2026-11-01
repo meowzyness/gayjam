@@ -137,10 +137,10 @@ func add_ban(p_name, key):
 	update_ban_lists()
 
 
-func del_ban(p_name, massive: Array):
+func del_ban(p_name, massive):
 	var _deleting_item
-	for i in range(len(massive)):
-		if massive[i] == p_name:
-			_deleting_item = massive[i]
-	massive.remove_at(_deleting_item)
+	for i in range(len(ban[massive])):
+		if ban[massive][i] == p_name:
+			_deleting_item = i
+	ban[massive].remove_at(_deleting_item)
 	update_ban_lists()
