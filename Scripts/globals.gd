@@ -111,8 +111,7 @@ var ban = {
 
 
 func _ready() -> void:
-	add_ban(load('res://Sprites/baggage/scan_item3.png'), 'banned_baggage')
-
+	pass
 
 
 func update_ban_lists():
@@ -121,23 +120,23 @@ func update_ban_lists():
 		if len(ban[k]) > 0:
 			amount += 1
 	amount_of_banning_lists = amount
-#
-#
+
+
 func get_ban_lists():
 	var ban_list = []
 	for k in ban.keys():
 		if len(ban[k]) > 0:
 			ban_list.append(k)
 	return ban_list
-#
-#
+
+
 func add_ban(p_name, key):
 	for k in ban:
 		if k == key:
 			ban[k].append(p_name)
 	update_ban_lists()
-#
-#
+
+
 func del_ban(p_name, massive: Array):
 	var _deleting_item
 	for i in range(len(massive)):

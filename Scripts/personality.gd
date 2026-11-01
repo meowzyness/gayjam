@@ -34,7 +34,7 @@ func _init():
 	texture = generate_texture()
 	totaly_real_texture = texture
 
-	var amount_of_baggage = randi_range(4, 10)
+	var amount_of_baggage = randi_range(3, 5)
 	while amount_of_baggage >= 0:
 		var b = generate_baggage_texture()
 		if b not in Globals.ban['banned_baggage']:

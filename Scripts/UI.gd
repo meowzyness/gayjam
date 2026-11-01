@@ -20,7 +20,7 @@ var balance: int = 0
 func _ready() -> void:
 	balance = 0
 	scanner = get_tree().root.find_child("Scanner", true, false)
-
+	
 	button_arrest.pressed.connect(_on_arrest_pressed)
 	button_inspect.pressed.connect(_on_inspect_pressed)
 	update(null)
