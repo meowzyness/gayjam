@@ -167,5 +167,12 @@ func getting_traitor():
 	else:
 		traitor = false
 
-			
-		
+
+func update():
+	if citizenship in Globals.ban['banned_citizenships']:
+		traitor = true
+		sussyness = randi_range(7, 10) / 10.0
+	for b in baggage:
+		if b in Globals.ban['banned_baggage']:
+			traitor = true
+			sussyness = randi_range(7, 10) / 10.0

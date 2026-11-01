@@ -31,6 +31,7 @@ func _ready() -> void:
 	if button_exit:
 		button_exit.pressed.connect(_on_exit_pressed)
 		button_exit.mouse_entered.connect(_on_button_hover)
+	generate_random_events()
 	update(null)
 
 func _on_button_hover() -> void:
@@ -159,8 +160,8 @@ func _on_timer_timeout() -> void:
 
 
 func generate_random_events():
-	await get_tree().create_timer(10.0).timeout
-	var r = randi_range(1, 11)
+	await get_tree().create_timer(5.0).timeout
+	var r = randi_range(10, 11)
 	if r == 1:
 		Globals.add_ban(randi_range(1, 14), 'banned_ages')
 		print(Globals.ban['banned_ages'])
@@ -230,4 +231,6 @@ func generate_random_events():
 		status_label.visible = true
 		status_label.get_child(0).start()
 		print(Globals.ban['banned_baggage'])
+	for p in Globals.people:
+		p.update()
 	generate_random_events()

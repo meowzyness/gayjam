@@ -109,6 +109,8 @@ var ban = {
 	"banned_baggage": []
 }
 
+var people = []
+
 
 func _ready() -> void:
 	pass

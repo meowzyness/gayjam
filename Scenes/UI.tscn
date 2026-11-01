@@ -30,6 +30,17 @@ Panel/styles/panel = SubResource("StyleBoxFlat_xjg7p")
 
 [sub_resource type="PlaceholderTexture3D" id="PlaceholderTexture3D_l845i"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("8_btn_normal")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("10_btn_press")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("9_btn_hover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn_focus"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48q88"]
 bg_color = Color(0.18, 0.18, 0.22, 1)
 corner_radius_top_left = 6
@@ -38,8 +49,6 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_d6pv0"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_wvm1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_white"]
 bg_color = Color(1, 1, 1, 1)
@@ -53,26 +62,15 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wunin"]
+size = Vector2(658.45685, 691.5326)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mg6lk"]
 bg_color = Color(0.18, 0.18, 0.22, 1)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
-texture = ExtResource("8_btn_normal")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
-texture = ExtResource("9_btn_hover")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
-texture = ExtResource("10_btn_press")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_btn_focus"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wunin"]
-size = Vector2(658.45685, 691.5326)
 
 [node name="UI" type="Control" unique_id=1778935788 node_paths=PackedStringArray("scanner", "dossier", "button_inspect", "button_arrest", "button_exit", "banned_people", "banned_citizenships")]
 layout_mode = 3
@@ -168,7 +166,6 @@ custom_minimum_size = Vector2(340, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
 theme_override_fonts/font = ExtResource("7_mixserif")
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")

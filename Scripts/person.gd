@@ -17,6 +17,7 @@ func get_detection_rect() -> Rect2:
 
 func _ready():
 	personality = Personality.new()
+	Globals.people.append(personality)
 	var sprite: Sprite2D = $Sprite2D as Sprite2D
 	sprite.texture = personality.totaly_real_texture
 
