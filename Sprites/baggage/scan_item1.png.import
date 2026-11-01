@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bihe3wyufgmfo"
-path="res://.godot/imported/scan_danger2.png-ddf5e0a847fd77de93474f7619226d0a.ctex"
+uid="uid://dtcw5pv1whtis"
+path="res://.godot/imported/scan_item1.png-4ac57a82fed39e651fbafea5549a6e0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/baggage/scan_danger2.png"
-dest_files=["res://.godot/imported/scan_danger2.png-ddf5e0a847fd77de93474f7619226d0a.ctex"]
+source_file="res://Sprites/baggage/scan_item1.png"
+dest_files=["res://.godot/imported/scan_item1.png-4ac57a82fed39e651fbafea5549a6e0d.ctex"]
 
 [params]
 
