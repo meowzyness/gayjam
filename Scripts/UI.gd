@@ -10,6 +10,7 @@ var balance: int = 0
 
 @export var button_inspect: Button
 @export var button_arrest: Button
+@export var button_exit: Button
 @export var status_label: Label
 @export var balance_label: Label
 
@@ -21,9 +22,22 @@ func _ready() -> void:
 	balance = 0
 	scanner = get_tree().root.find_child("Scanner", true, false)
 
-	button_arrest.pressed.connect(_on_arrest_pressed)
-	button_inspect.pressed.connect(_on_inspect_pressed)
+	if button_arrest:
+		button_arrest.pressed.connect(_on_arrest_pressed)
+		button_arrest.mouse_entered.connect(_on_button_hover)
+	if button_inspect:
+		button_inspect.pressed.connect(_on_inspect_pressed)
+	if button_exit:
+		button_exit.pressed.connect(_on_exit_pressed)
+		button_exit.mouse_entered.connect(_on_button_hover)
 	update(null)
+
+func _on_button_hover() -> void:
+	AudioManager.play_ui_sound("click2")
+
+func _on_exit_pressed() -> void:
+	AudioManager.play_ui_sound("click")
+	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.keycode == KEY_ESCAPE:
