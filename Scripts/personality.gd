@@ -116,37 +116,54 @@ var last_names_western_f = [
 
 var citizenship_types = ["Трикарасье", "Новкарасье", "Чегория", "Стромыния", "Сокологора", "Теркастан", "Кашингтон", "Вернандт"]
 
-func is_guilty() -> bool:
+func is_guilty():
 	return traitor
 
-func get_arrest_reward() -> int:
+func get_arrest_reward():
 	return arrest_reward if is_guilty() else -arrest_reward
 
 func _init():
 	sex = sexes.pick_random()
+	
 	citizenship = citizenship_types.pick_random()
-
+	while citizenship in Banned.ban['banned_citizenship']:
+		citizenship = citizenship_types.pick_random()
+	
 	randomize_name()
+	while name in Banned.ban['banned_names'] or surname in Banned.ban['banned_surnames']:
+		randomize_name()
+	
 	generate_age()
+	while age in Banned.ban['banned_ages']:
+		generate_age()
+	
 	texture = generate_texture()
 	totaly_real_texture = texture
+	while texture in Banned.ban['banned_textures']:
+		texture = generate_texture()
+		totaly_real_texture = texture
 
 	var amount_of_baggage = randi_range(4, 10)
 	while amount_of_baggage >= 0:
 		amount_of_baggage -= 1
-		baggage_x.append(randf_range(0, 1))
-		baggage_y.append(randf_range(0, 1))
-		baggage.append(generate_baggage_texture())
+		var b = generate_baggage_texture()
+		if b not in Banned.ban['banned_baggage']:
+			baggage.append(b)
+			baggage_x.append(randf_range(0, 1))
+			baggage_y.append(randf_range(0, 1))
+		else:
+			amount_of_baggage += 1
 
 	sussyness = pow(randf(), 3)
 	if randf() <= sussyness:
+		traitor = true
 		getting_traitor()
-	elif texture in Banned.ban['banned_textures'] or age in Banned.ban['banned_ages']: 
-		traitor = true
-	elif name in Banned.ban['banned_names'] or surname in Banned.ban['banned_surnames']: 
-		traitor = true
-	elif citizenship in Banned.ban['banned_names']: 
-		traitor = true
+	#elif texture in Banned.ban['banned_textures'] or age in Banned.ban['banned_ages']: 
+		#traitor = true
+	#elif name in Banned.ban['banned_names'] or surname in Banned.ban['banned_surnames']: 
+		#traitor = true
+	#elif citizenship in Banned.ban['banned_citizenship'] or Banned.ban['banned_baggage']: 
+		#traitor = true
 	else:
 		traitor = false
 
@@ -225,7 +242,6 @@ func randomize_name() -> void:
 
 
 func getting_traitor():
-	traitor = true
 	var r: int
 	if Banned.amount_of_banning_lists == 0:
 		r = randi_range(1, 2)

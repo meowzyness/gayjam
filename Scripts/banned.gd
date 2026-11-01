@@ -7,7 +7,8 @@ var ban = {
 	"banned_citizenship": [],
 	"banned_names": [],
 	"banned_surnames": [],
-	"banned_textures": [load("res://Sprites/people/civ_f_001t.webp")]
+	"banned_textures": [],
+	"banned_baggage": []
 }
 
 
@@ -27,15 +28,17 @@ func get_ban_lists():
 	return ban_list
 
 
-func add_ban(p_name, massive: Array):
-	massive.append(p_name)
+func add_ban(p_name, key):
+	for k in ban:
+		if k == key:
+			ban[k].append(p_name)
 	update_ban_lists()
 
 
-func del_ban(p_name, massive: Array):
+func del_ban(p_name, key):
 	var _deleting_item
-	for i in range(len(massive)):
-		if massive[i] == p_name:
-			_deleting_item = massive[i]
-	massive.remove_at(_deleting_item)
+	for i in range(len(key)):
+		if key[i] == p_name:
+			_deleting_item = key[i]
+	key.remove_at(_deleting_item)
 	update_ban_lists()
