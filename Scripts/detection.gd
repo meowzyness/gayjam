@@ -11,7 +11,7 @@ func _ready() -> void:
 	z_as_relative = false
 	z_index = 4096
 
-func visibility_score(target: Node2D, rect: Rect2, targets: Array) -> float:
+func visibility_score(target: Area2D, rect: Rect2, targets: Array) -> float:
 	var visible := 0
 	var total := 9
 
@@ -23,8 +23,14 @@ func visibility_score(target: Node2D, rect: Rect2, targets: Array) -> float:
 			for other in targets:
 				if other == target:
 					continue
-				if other.render_rank > target.render_rank \
-				and other.get_detection_rect().has_point(point):
+				
+				if not other is Person:
+					#other = other as Area2D
+					if other.get_overlapping_areas().has(target):
+						covered = true
+						break
+					continue
+				if other.render_rank > target.render_rank and other.get_detection_rect().has_point(point):
 					covered = true
 					break
 

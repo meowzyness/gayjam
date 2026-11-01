@@ -9,7 +9,7 @@ var personality: Personality
 var hovered: bool = false
 
 @export var box_size := Vector2(70, 100)
-@export var box_offset := Vector2(0, -70)
+@export var box_offset := Vector2(-10, -70)
 var render_rank := randi_range(0, 50)
 
 func get_detection_rect() -> Rect2:
@@ -52,9 +52,10 @@ func _physics_process(delta: float) -> void:
 		z_index = render_rank
 		input_pickable = true 
 	
+	var offset_y: float = 0
 	var velocity
 	if is_walker:
-		position.y = -abs(sin(time * speed/8) * 4)
+		offset_y = -abs(sin(time * speed/8) * 4)
 		velocity = direction * speed
 	else:
 		velocity = direction * 50.0
@@ -64,3 +65,4 @@ func _physics_process(delta: float) -> void:
 			$/root/Node2D/CanvasLayer/UI.skipped(self)
 		queue_free()
 	position += velocity * delta
+	sprite.position.y = offset_y

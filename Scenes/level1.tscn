@@ -61,6 +61,7 @@ centered = false
 [node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=638173762]
 position = Vector2(2000, 825)
 script = ExtResource("1_4hvuo")
+direction = Vector2(-1, 0)
 
 [node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=192485681]
 autostart = true

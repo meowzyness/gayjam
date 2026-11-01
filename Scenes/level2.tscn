@@ -1,0 +1,215 @@
+[gd_scene format=3 uid="uid://c7e486cv1dpye"]
+
+[ext_resource type="PackedScene" uid="uid://k1w036y3b5pa" path="res://Scenes/UI.tscn" id="1_lgosu"]
+[ext_resource type="Texture2D" uid="uid://yscq0tfbkpvu" path="res://Sprites/lvl2/background.png" id="2_mhlpv"]
+[ext_resource type="Script" uid="uid://dcw1mytayjqfg" path="res://Scripts/spawner.gd" id="3_ng020"]
+[ext_resource type="Texture2D" uid="uid://blbi21f0yx8ws" path="res://Sprites/lvl2/excalator.png" id="4_ng020"]
+[ext_resource type="Script" uid="uid://c62gdbyvacrru" path="res://Scripts/detection.gd" id="5_mtqcm"]
+[ext_resource type="Shader" uid="uid://dbgot2yxwhxn6" path="res://Scripts/shader.gdshader" id="6_mmf1u"]
+[ext_resource type="FontFile" uid="uid://bnrfw3kxim8ve" path="res://fonts/VCR_OSD_MONO_1.001.ttf" id="7_vn460"]
+[ext_resource type="Texture2D" uid="uid://bk5qk3to28ndf" path="res://Sprites/lvl2/colonna.png" id="8_vn2uo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mya75"]
+shader = ExtResource("6_mmf1u")
+shader_parameter/fisheye_strength = 0.010000000475
+shader_parameter/scanline_strength = 0.50000002375
+shader_parameter/noise_strength = 0.050000002375
+shader_parameter/vignette_strength = 0.70000003325
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2a60c"]
+bg_color = Color(0, 0, 0, 1)
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_mya75"]
+font = ExtResource("7_vn460")
+font_size = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mya75"]
+size = Vector2(106.46765, 732.33826)
+
+[node name="Node2D" type="Node2D" unique_id=1976342410]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=340385995]
+
+[node name="UI" parent="CanvasLayer" unique_id=1778935788 node_paths=PackedStringArray("status_label", "balance_label") instance=ExtResource("1_lgosu")]
+status_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label4")
+balance_label = NodePath("../../SubViewportContainer/SubViewport/CanvasLayer/Control/Label")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1865536499]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1405550987]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport" unique_id=1718147792]
+anchor_mode = 0
+
+[node name="Sprite2D2" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1330602048]
+texture = ExtResource("2_mhlpv")
+centered = false
+
+[node name="CrowdSpawner" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=638173762]
+position = Vector2(2029.3333, 361.33334)
+script = ExtResource("3_ng020")
+direction = Vector2(-1, 0.25)
+
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CrowdSpawner" unique_id=192485681]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1932597599]
+z_index = 100
+position = Vector2(604.66656, 742.6667)
+scale = Vector2(1.3845613, 1.4499997)
+texture = ExtResource("4_ng020")
+
+[node name="Detection" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1245081834 node_paths=PackedStringArray("scan_origin")]
+z_index = 2
+script = ExtResource("5_mtqcm")
+scan_origin = NodePath("../Camera2D")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=106979656]
+z_index = 1000
+z_as_relative = false
+material = SubResource("ShaderMaterial_mya75")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="SubViewportContainer/SubViewport" unique_id=1926620516]
+layer = 2000
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport/CanvasLayer" unique_id=1198294073]
+z_index = 2000
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1610842]
+layout_mode = 0
+offset_left = 1450.6667
+offset_top = 69.333336
+offset_right = 1889.3334
+offset_bottom = 114.66668
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Label4" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1550541697]
+visible = false
+layout_mode = 0
+offset_left = 1414.6667
+offset_top = 362.66666
+offset_right = 1853.3335
+offset_bottom = 408.00003
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Timer" type="Timer" parent="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4" unique_id=884701006]
+wait_time = 5.0
+
+[node name="Label2" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=1306035782]
+layout_mode = 0
+offset_left = 97.333336
+offset_top = 66.66667
+offset_right = 535.99994
+offset_bottom = 112.00003
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+text = "SEP 11             18:47"
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Label3" type="Label" parent="SubViewportContainer/SubViewport/CanvasLayer/Control" unique_id=621617518]
+layout_mode = 0
+offset_left = 89.333336
+offset_top = 972.0
+offset_right = 528.3333
+offset_bottom = 1017.33344
+theme_override_styles/normal = SubResource("StyleBoxFlat_2a60c")
+text = "AIRPORT_HALLWAY_CAMERA_01"
+label_settings = SubResource("LabelSettings_mya75")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
+
+[node name="Colonna" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=31707293]
+z_index = 100
+position = Vector2(205.33334, 541.3333)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("8_vn2uo")
+
+[node name="Area2D" type="Area2D" parent="SubViewportContainer/SubViewport/Colonna" unique_id=1186280709 groups=["detectable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Colonna/Area2D" unique_id=397171691]
+position = Vector2(4.477646, -15.92038)
+shape = SubResource("RectangleShape2D_mya75")
+
+[node name="Colonna2" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1645114704]
+z_index = 100
+position = Vector2(1258.6666, 541.3334)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("8_vn2uo")
+
+[node name="Area2D2" type="Area2D" parent="SubViewportContainer/SubViewport/Colonna2" unique_id=1344961846 groups=["detectable"]]
+position = Vector2(-7.960202, -18.905502)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Colonna2/Area2D2" unique_id=518218073]
+position = Vector2(6.4676666, -15.92038)
+shape = SubResource("RectangleShape2D_mya75")
+
+[node name="Colonna4" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1059977437]
+z_index = 100
+position = Vector2(1721.3334, 541.3333)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("8_vn2uo")
+
+[node name="Area2D3" type="Area2D" parent="SubViewportContainer/SubViewport/Colonna4" unique_id=882970312 groups=["detectable"]]
+position = Vector2(-4.9751587, -4.975109)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Colonna4/Area2D3" unique_id=115433871]
+position = Vector2(6.4676666, -15.92038)
+shape = SubResource("RectangleShape2D_mya75")
+
+[node name="Colonna3" type="Sprite2D" parent="SubViewportContainer/SubViewport" unique_id=1701381437]
+z_index = 100
+position = Vector2(733.33344, 541.3333)
+scale = Vector2(1.34, 1.34)
+texture = ExtResource("8_vn2uo")
+
+[node name="Area2D4" type="Area2D" parent="SubViewportContainer/SubViewport/Colonna3" unique_id=332325943 groups=["detectable"]]
+position = Vector2(-6.965231, -2.9850483)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Colonna3/Area2D4" unique_id=94132254]
+position = Vector2(6.4676666, -15.92038)
+shape = SubResource("RectangleShape2D_mya75")
+
+[connection signal="timeout" from="SubViewportContainer/SubViewport/CrowdSpawner/Timer" to="SubViewportContainer/SubViewport/CrowdSpawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="SubViewportContainer/SubViewport/CanvasLayer/Control/Label4/Timer" to="CanvasLayer/UI" method="_on_timer_timeout"]
